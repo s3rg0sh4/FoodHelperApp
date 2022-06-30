@@ -13,6 +13,22 @@
     VerticalAlignment="Top"
     >
 
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Foreground" Value="#323232"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Foreground" Value="#323232"/>
+            <Setter Property="Background" Value="#7DC3FD"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="CornerRadius" Value="30,30,30,30"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+    </Page.Resources>
+
     <Grid x:Name="MainGrid" Background="White" Margin="50,55,50,75" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
@@ -25,10 +41,11 @@
                 <ColumnDefinition Width="651"/>
                 <ColumnDefinition Width="569"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="ExitButton" Grid.Column="0" Content="Выйти" FontFamily="Inter" FontSize="20" Foreground="#323232" Background="#7DC3FD" Grid.Row="0" Height="48" Width="120" CornerRadius="30,30,30,30" Click="ExitButton_Click"/>
-            <TextBlock x:Name="LoginText" Grid.Column="1" Text="Login" FontFamily="Inter" FontSize="40" Foreground="#323232" HorizontalAlignment="Center" Height="48" Width="600" TextAlignment="Center"/>
-            <Button x:Name="AddIngredientButton" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Content="Добавить ингредиет +" FontFamily="Inter" FontSize="20" Foreground="#323232" Background="#7DC3FD" Height="48" Width="288" CornerRadius="30,30,30,30" Click="AddIngredientButton_Click"/>
-            <Button x:Name="AddRecipeButton"    Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Content="Добавить рецепт +" FontFamily="Inter" FontSize="20" Foreground="#323232" Background="#7DC3FD" Height="48" Width="240" CornerRadius="30,30,30,30" Click="AddRecipeButton_Click"/>
+            
+            <Button x:Name="ExitButton" Grid.Column="0" Content="Выйти" Grid.Row="0" Width="120" Click="ExitButton_Click"/>
+            <TextBlock x:Name="LoginText" Grid.Column="1" Text="Login" FontFamily="Inter" FontSize="40" HorizontalAlignment="Center" Height="48" Width="600" TextAlignment="Center"/>
+            <Button x:Name="AddIngredientButton" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Content="Добавить ингредиет +" Width="288" Click="AddIngredientButton_Click"/>
+            <Button x:Name="AddRecipeButton" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Content="Добавить рецепт +" Width="240" Click="AddRecipeButton_Click"/>
         </Grid>
 
         <Grid x:Name="Blocks" Grid.Row="2">
@@ -44,8 +61,8 @@
                     <RowDefinition Height="370"/>
                 </Grid.RowDefinitions>
                 <Rectangle HorizontalAlignment="Center" Grid.Row="0" Height="370" Width="467" Fill="#EDEDED" VerticalAlignment="Center" RadiusX="30" RadiusY="30"/>
-                <Button x:Name="AddAteToday" Content="Сегодня съедено +" Grid.Row="0" Margin="16, 24" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="20" Foreground="#323232" Background="#7DC3FD" Height="48" Width="435" CornerRadius="30,30,30,30" Click="AddAteToday_Click"/>
-                <TextBlock Text="Сегодня вы съели" Grid.Row="0" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <Button x:Name="AddAteToday" Content="Сегодня съедено +" Grid.Row="0" Margin="16, 24" HorizontalAlignment="Center" VerticalAlignment="Top" Width="435" Click="AddAteToday_Click"/>
+                <TextBlock Text="Сегодня вы съели" Grid.Row="0" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
 
 
 
@@ -71,23 +88,22 @@
                 <Rectangle HorizontalAlignment="Center" Grid.Column="0" Grid.Row="1" Height="335" Width="369" Fill="#FFFFFF" VerticalAlignment="Center" RadiusX="30" RadiusY="30"/>
                 <Rectangle HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Height="335" Width="369" Fill="#FFFFFF" VerticalAlignment="Center" RadiusX="30" RadiusY="30"/>
 
-                <TextBlock Text="Калории" Grid.Column="0" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock Text="Калории" Grid.Column="0" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Image Source="icons/Gained.png" Grid.Column="0" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="219" Width="219"/>
-                <TextBlock x:Name="Gained" Text="nnn" Grid.Column="0" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock x:Name="Gained" Text="nnn" Grid.Column="0" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                <TextBlock Text="Белки" Grid.Column="1" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock Text="Белки" Grid.Column="1" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Image Source="icons/Proteins.png" Grid.Column="1" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="101" Width="199"/>
-                <TextBlock x:Name="Proteins" Text="nnn" Grid.Column="1" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock x:Name="Proteins" Text="nnn" Grid.Column="1" Grid.Row="0" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                <TextBlock Text="Жиры" Grid.Column="0" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock Text="Жиры" Grid.Column="0" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Image Source="icons/Fats.png" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="174" Width="122"/>
-                <TextBlock x:Name="Fats" Text="nnn" Grid.Column="0" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock x:Name="Fats" Text="nnn" Grid.Column="0" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
 
-                <TextBlock Text="Углеводы" Grid.Column="1" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock Text="Углеводы" Grid.Column="1" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                 <Image Source="icons/Carbs.png" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Height="149" Width="122"/>
-                <TextBlock x:Name="Carbs" Text="nnn" Grid.Column="1" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom" FontFamily="Inter" FontSize="32" Foreground="#323232"/>
+                <TextBlock x:Name="Carbs" Text="nnn" Grid.Column="1" Grid.Row="1" Margin="40" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
             </Grid>
-
         </Grid>
 
 
