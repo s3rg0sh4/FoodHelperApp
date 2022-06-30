@@ -9,9 +9,11 @@
     Height="1024"
     Width="1440"
     Background="#FFFFFF"
+    HorizontalAlignment="Left"
+    VerticalAlignment="Top"
     >
 
-    <Grid x:Name="MainGrid" Background="White" Margin="50,55,50,75">
+    <Grid x:Name="MainGrid" Background="White" Margin="50,55,50,75" HorizontalAlignment="Left" VerticalAlignment="Top">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
             <RowDefinition Height="83"/>

@@ -26,8 +26,8 @@ namespace FoodHelperApp
 
         public MainPage()
         {
-			//LoginText.Text = "s3rg0sh4<3Athenaja";
             this.InitializeComponent();
+			LoginText.Text = "s3rg0sh4<3Athenaja";
         }
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e)
