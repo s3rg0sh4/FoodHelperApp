@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
@@ -17,10 +18,10 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FoodHelperApp
 {
-    /// <summary>
-    /// Обеспечивает зависящее от конкретного приложения поведение, дополняющее класс Application по умолчанию.
-    /// </summary>
-    sealed partial class App : Application
+	/// <summary>
+	/// Обеспечивает зависящее от конкретного приложения поведение, дополняющее класс Application по умолчанию.
+	/// </summary>
+	sealed partial class App : Application
     {
         /// <summary>
         /// Инициализирует одноэлементный объект приложения. Это первая выполняемая строка разрабатываемого

@@ -17,18 +17,18 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FoodHelperApp
 {
-    /// <summary>
-    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-    /// </summary>
-    public sealed partial class MainPage : Page
-    {
+	/// <summary>
+	/// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
+	/// </summary>
+	public sealed partial class MainPage : Page
+	{
+		const string login = "s3rg0sh4<3Athenaja";
 
-
-        public MainPage()
-        {
-            this.InitializeComponent();
-			LoginText.Text = "s3rg0sh4<3Athenaja";
-        }
+		public MainPage()
+		{
+			this.InitializeComponent();
+			LoginText.Text = login;
+		}
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e)
 		{
