@@ -22,8 +22,11 @@ namespace FoodHelperApp
     /// </summary>
     public sealed partial class MainPage : Page
     {
+
+
         public MainPage()
         {
+			//LoginText.Text = "s3rg0sh4<3Athenaja";
             this.InitializeComponent();
         }
 
@@ -38,6 +41,16 @@ namespace FoodHelperApp
 		}
 
 		private void AddRecipeButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void AddBurnedToday_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void AddAteToday_Click(object sender, RoutedEventArgs e)
 		{
 
 		}
