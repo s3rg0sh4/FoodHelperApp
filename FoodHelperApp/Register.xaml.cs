@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
-
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -18,22 +17,17 @@ using Windows.UI.Xaml.Navigation;
 
 namespace FoodHelperApp
 {
-	/// <summary>
-	/// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
-	/// </summary>
-	public sealed partial class Auth : Page
-	{
-		public Auth()
-		{
-			this.InitializeComponent();
-		}
-
-        private void Auth_Click(object sender, RoutedEventArgs e)
+    /// <summary>
+    /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
+    /// </summary>
+    public sealed partial class Register : Page
+    {
+        public Register()
         {
-
+            this.InitializeComponent();
         }
 
-        private void Register_Click(object sender, RoutedEventArgs e)
+        private void CloseRegister_Click(object sender, RoutedEventArgs e)
         {
 
         }
