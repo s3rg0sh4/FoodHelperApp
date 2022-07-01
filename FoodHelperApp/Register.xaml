@@ -39,7 +39,8 @@
             <RowDefinition Height="196"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid RowSpacing="0">
+        
+        <Grid Row="0">
             <Image Source="Icons/Cross.png" 
                    Width="36" 
                    VerticalAlignment="Top"
@@ -53,6 +54,7 @@
                     Margin="25" 
                     Background="#00FFFFFF"/>
         </Grid>
+        
         <Grid Row ="1">
             <TextBlock Text="Помощник диетолога" 
                        FontFamily="Inter" 
