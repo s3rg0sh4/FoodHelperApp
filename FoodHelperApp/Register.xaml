@@ -11,22 +11,19 @@
     Background="#FFFFFF">
 
     <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="Foreground" Value="#323232"/>
-        </Style>
         <Style TargetType="TextBox">
-            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#2D2D2D"/>
             <Setter Property="Background" Value="#7DC3FD"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
-            <Setter Property="Padding" Value="20,10,20,10"/>
+            <Setter Property="Padding" Value="20,11,20,10"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="PasswordBox">
-            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#2D2D2D"/>
             <Setter Property="Background" Value="#7DC3FD"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Padding" Value="20,10,10,10"/>
@@ -34,11 +31,7 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
             <Setter Property="BorderBrush" Value="#00000000"/>
-        </Style>
-        <Style TargetType="ListViewItem">
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="Foreground" Value="#323232"/>
-            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Width" Value="350"/>
         </Style>
     </Page.Resources>
 
@@ -49,13 +42,8 @@
             <RowDefinition Height="196"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
-        <Grid Row="0">
-            <!--<Image Source="Icons/Cross.png" 
-                   Width="36" 
-                   VerticalAlignment="Top"
-                   HorizontalAlignment="Right" 
-                   Margin="25"/>-->
+
+        <Grid Grid.Row="0">
             <Button x:Name="CloseRegister" 
                     Width="100" Height="100" 
                     Click="CloseRegister_Click" 
@@ -67,50 +55,24 @@
                     FontSize="50"
                     Content="r"/>
         </Grid>
-        
-        <Grid Row ="1">
-            <TextBlock Text="Помощник диетолога" 
-                       FontFamily="Inter" 
-                       FontSize="48" 
-                       HorizontalAlignment="Center"/>
-            <TextBlock Text="Регистрация" 
-                       FontFamily="Inter" 
-                       FontSize="32" 
-                       HorizontalAlignment="Center" 
-                       Margin="0,0,0,26" 
-                       VerticalAlignment="Bottom"/>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="Помощник диетолога" FontSize="48" HorizontalAlignment="Center"/>
+            <TextBlock Text="Регистрация" HorizontalAlignment="Center" Margin="0,0,0,16" VerticalAlignment="Bottom"/>
         </Grid>
-        <Grid Row="2">
-            <TextBox x:Name="Login" 
-                     VerticalAlignment="Top" 
-                     Width="350" 
-                     PlaceholderText="Логин" 
-                     BorderBrush="#00000000" />
-            <PasswordBox x:Name="Password" 
-                     VerticalAlignment="Center" 
-                     Width="350" 
-                     PlaceholderText="Пароль" 
-                     BorderBrush="#00000000"/>
-            <PasswordBox x:Name="RepeatPassword" 
-                     VerticalAlignment="Bottom" 
-                     Width="350" 
-                     PlaceholderText="Повторите пароль" 
-                     BorderBrush="#00000000"
-                     />
+        <Grid Grid.Row="2">
+            <TextBox x:Name="Login" VerticalAlignment="Top" PlaceholderText="Логин"/>
+            <PasswordBox x:Name="Password" VerticalAlignment="Center" PlaceholderText="Пароль"/>
+            <PasswordBox x:Name="RepeatPassword" VerticalAlignment="Bottom" PlaceholderText="Повторите пароль"/>
         </Grid>
-        <Grid Row="3">
+        <Grid Grid.Row="3">
             <Button x:Name="Registrate" 
                     Content="Зарегистрироваться" 
                     HorizontalAlignment="Center" 
                     Click="Registrate_Click"
-                    Margin="0, 26, 0, 0" 
+                    Margin="0,26,0,0" 
                     VerticalAlignment="Top"
-                    FontFamily="Inter"
-                    FontSize="20"
-                    Foreground="#323232"
-                    Background="#7DC3FD"
-                    Height="48" Width="250" 
-                    CornerRadius="30,30,30,30"/>
+                    Width="250"/>
         </Grid>
     </Grid>
 </Page>

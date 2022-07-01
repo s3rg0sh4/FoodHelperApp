@@ -12,11 +12,6 @@
 
     <Page.Resources>
 
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontSize" Value="32"/>
-            <Setter Property="Foreground" Value="#323232"/>
-        </Style>
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
             <Setter Property="Background" Value="#7DC3FD"/>
@@ -26,7 +21,7 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
             <Setter Property="BorderBrush" Value="#00000000"/>
-        </Style> 
+        </Style>
         <Style TargetType="PasswordBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
             <Setter Property="Background" Value="#7DC3FD"/>
@@ -37,43 +32,45 @@
             <Setter Property="Height" Value="48"/>
             <Setter Property="BorderBrush" Value="#00000000"/>
         </Style>
-        <Style TargetType="ListViewItem">
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="Foreground" Value="#323232"/>
-            <Setter Property="FontSize" Value="32"/>
-        </Style>
     </Page.Resources>
-
-    <Grid Height="351" Width="512">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="129"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="100"/>
-        </Grid.RowDefinitions>
-        <Grid Row ="0">
-            <TextBlock Text="Помощник диетолога" 
+    <Grid>
+        <TextBlock 
+            Text="Приложение выполнено студентами Московского Политихнического университета в рамках курсового проекта&#10;Группа 191-361&#10;Ларичев Сергей&#10;Базавлюк Ольга"
+            FontSize="14"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Bottom"
+            TextAlignment="Right"
+            Margin="5"/>
+        <Grid Height="351" Width="512">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="129"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="100"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row ="0">
+                <TextBlock Text="Помощник диетолога" 
                        FontFamily="Inter" 
                        FontSize="48" 
                        HorizontalAlignment="Center"/>
-            <TextBlock Text="Авторизация"
+                <TextBlock Text="Авторизация"
                        FontFamily="Inter"
                        FontSize="32"
                        HorizontalAlignment="Center" 
                        Margin="0,0,0,26"
                        VerticalAlignment="Bottom"/>
-        </Grid>
-        <Grid Row="1">
-            <TextBox x:Name="Login" 
+            </Grid>
+            <Grid Grid.Row="1">
+                <TextBox x:Name="Login" 
                      VerticalAlignment="Top" 
                      Width="350" 
                      PlaceholderText="Логин" />
-            <PasswordBox x:Name="Password" 
+                <PasswordBox x:Name="Password" 
                      VerticalAlignment="Bottom" 
                      Width="350" 
                      PlaceholderText="Пароль" />
-        </Grid>
-        <Grid Row="2">
-            <Button x:Name="Authorisate" 
+            </Grid>
+            <Grid Grid.Row="2">
+                <Button x:Name="Authorisate" 
                     Content="Авторизоваться" 
                     HorizontalAlignment="Center"
                     Click="Auth_Click"
@@ -86,7 +83,7 @@
                     Height="48"
                     Width="197" 
                     CornerRadius="30,30,30,30"/>
-            <Button x:Name="Register" 
+                <Button x:Name="Register" 
                     Content="Нет аккаунта?" 
                     HorizontalAlignment="Center"
                     Click="Register_Click" 
@@ -98,6 +95,7 @@
                     Height="25" 
                     Width="108" 
                     Margin="0,75,0,0"/>
+            </Grid>
         </Grid>
     </Grid>
 </Page>
