@@ -21,7 +21,7 @@
             <Setter Property="Foreground" Value="#2d2d2d"/>
             <Setter Property="Background" Value="#7DC3FD"/>
             <Setter Property="FontSize" Value="20"/>
-            <Setter Property="Padding" Value="10.5"/>
+            <Setter Property="Padding" Value="20,10,10,10"/>
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
