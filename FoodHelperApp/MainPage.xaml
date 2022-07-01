@@ -53,7 +53,7 @@
             <Button x:Name="AddIngredientButton" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Content="Добавить ингредиет +" Width="288" Click="AddIngredientButton_Click"/>
             <Button x:Name="AddRecipeButton" Grid.Column="2" Grid.Row="0" HorizontalAlignment="Right" Content="Добавить рецепт +" Width="240" Click="AddRecipeButton_Click"/>
         </Grid>
-
+        
         <Grid x:Name="Blocks" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="467"/>
@@ -77,6 +77,8 @@
                     </Grid.ColumnDefinitions>
 
                     <ListView x:Name="AteToday" ItemsSource="{Binding displayPostsList}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" HorizontalContentAlignment="Left">
+                        
+                        
                     </ListView>
                     <Button x:Name="ArrowLeft" Grid.Column="0" HorizontalAlignment="Center" Height="200" Click="PreviousButton_Click" Background="#EDEDED" FontFamily="Marlett" FontSize="25" Content="3" CornerRadius="0,0,0,0" Width="50" Foreground="#7F808080"/>
                     <Button x:Name="ArrowRight" Grid.Column="2" HorizontalAlignment="Center" Height="200" Click="NextButton_Click" Background="#EDEDED" FontFamily="Marlett" FontSize="25" Content="4" CornerRadius="0,0,0,0" Width="50" Foreground="#7F808080"/>
