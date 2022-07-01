@@ -11,7 +11,6 @@
     Background="#FFFFFF">
 
     <Page.Resources>
-
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="FontSize" Value="32"/>
@@ -41,18 +40,21 @@
         </Grid.RowDefinitions>
         
         <Grid Row="0">
-            <Image Source="Icons/Cross.png" 
+            <!--<Image Source="Icons/Cross.png" 
                    Width="36" 
                    VerticalAlignment="Top"
                    HorizontalAlignment="Right" 
-                   Margin="25"/>
+                   Margin="25"/>-->
             <Button x:Name="CloseRegister" 
-                    Width="36" Height="36" 
+                    Width="100" Height="100" 
                     Click="CloseRegister_Click" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
-                    Margin="25" 
-                    Background="#00FFFFFF"/>
+                    Background="#00FFFFFF" 
+                    Foreground="#323232"
+                    FontFamily="Marlett"
+                    FontSize="50"
+                    Content="r"/>
         </Grid>
         
         <Grid Row ="1">
