@@ -6,9 +6,49 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Height="1024"
+    Width="1440"
+    Background="#FFFFFF">
 
-    <Grid>
+    <Page.Resources>
 
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Foreground" Value="#323232"/>
+        </Style>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Background" Value="#7DC3FD"/>
+            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="CornerRadius" Value="30,30,30,30"/>
+            <Setter Property="Height" Value="48"/>
+        </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="Foreground" Value="#323232"/>
+            <Setter Property="FontSize" Value="32"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid Height="351" Width="512">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="129"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="100"/>
+        </Grid.RowDefinitions>
+        <Grid Row ="0">
+            <TextBlock Text="Помощник диетолога" FontFamily="Inter" FontSize="48" HorizontalAlignment="Center"/>
+            <TextBlock Text="Авторизация" FontFamily="Inter" FontSize="32" HorizontalAlignment="Center" Margin="0,0,0,26" VerticalAlignment="Bottom"/>
+        </Grid>
+        <Grid Row="1">
+            <TextBox x:Name="Login" VerticalAlignment="Top" Width="350" PlaceholderText="Логин" BorderBrush="#00000000" />
+            <TextBox x:Name="Password" VerticalAlignment="Bottom" Width="350" PlaceholderText="Пароль" BorderBrush="#00000000"/>
+        </Grid>
+        <Grid Row="2">
+            <Button x:Name="Auth" Content="Авторизоваться" HorizontalAlignment="Center" Click="Auth_Click" Margin="0, 26, 0, 0" VerticalAlignment="Top" FontFamily="Inter" FontSize="20" Foreground="#323232" Background="#7DC3FD" Height="48" Width="197" CornerRadius="30,30,30,30"/>
+            <Button x:Name="Register" Content="Нет аккаунта?" HorizontalAlignment="Center" Click="Register_Click"  VerticalAlignment="Top" FontFamily="Inter" FontSize="10" Foreground="#323232" Background="#00ffffff" Height="25" Width="108" Margin="0,75,0,0"/>
+        </Grid>
     </Grid>
 </Page>

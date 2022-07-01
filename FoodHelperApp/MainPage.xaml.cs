@@ -40,7 +40,8 @@ namespace FoodHelperApp
 			NextButton_Click(null, null);
 			ArrowLeft.Visibility = Visibility.Collapsed;
 			LoginText.Text = login;
-
+			Auth auth = new Auth();
+			auth.
 		}
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
