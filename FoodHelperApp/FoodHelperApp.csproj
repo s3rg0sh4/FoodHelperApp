@@ -130,8 +130,11 @@
     </AppxManifest>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Icons\ArrowLeft.png" />
+    <Content Include="Icons\ArrowRight.png" />
     <Content Include="Icons\Burned.png" />
     <Content Include="Icons\Carbs.png" />
+    <Content Include="Icons\Cross.png" />
     <Content Include="Icons\Fats.png" />
     <Content Include="Icons\Gained.png" />
     <Content Include="Icons\Proteins.png" />

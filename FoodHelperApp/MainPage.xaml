@@ -14,6 +14,7 @@
     >
 
     <Page.Resources>
+
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="FontSize" Value="32"/>
@@ -68,7 +69,7 @@
                 <Rectangle HorizontalAlignment="Center" Grid.Row="0" Height="370" Width="467" Fill="#EDEDED" VerticalAlignment="Center" RadiusX="30" RadiusY="30"/>
                 <Button x:Name="AddAteToday" Content="Сегодня съедено +" Grid.Row="0" Margin="16, 24" HorizontalAlignment="Center" VerticalAlignment="Top" Width="435" Click="AddAteToday_Click"/>
                 <TextBlock Text="Сегодня вы съели" Grid.Row="0" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300"/>
-                <Grid Grid.Row="0" Margin="0,135,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                <Grid Grid.Row="0" Margin="0,135,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Height="200">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="50"/>
                         <ColumnDefinition Width="300"/>
@@ -77,8 +78,8 @@
 
                     <ListView x:Name="AteToday" ItemsSource="{Binding displayPostsList}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" HorizontalContentAlignment="Left">
                     </ListView>
-                    <Button x:Name="PreviousButton" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="PreviousButton_Click" CornerRadius="0,0,0,0"/>
-                    <Button x:Name="NextButton" Grid.Column="2" HorizontalAlignment="Center" Click="NextButton_Click" CornerRadius="0,0,0,0"/>
+                    <Button x:Name="ArrowLeft" Grid.Column="0" HorizontalAlignment="Center" Height="200" Click="PreviousButton_Click" Background="#EDEDED" FontFamily="Marlett" FontSize="25" Content="3" CornerRadius="0,0,0,0" Width="50" Foreground="#7F808080"/>
+                    <Button x:Name="ArrowRight" Grid.Column="2" HorizontalAlignment="Center" Height="200" Click="NextButton_Click" Background="#EDEDED" FontFamily="Marlett" FontSize="25" Content="4" CornerRadius="0,0,0,0" Width="50" Foreground="#7F808080"/>
                 </Grid>
 
 

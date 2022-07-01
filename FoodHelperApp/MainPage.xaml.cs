@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -23,25 +24,25 @@ namespace FoodHelperApp
 	public sealed partial class MainPage : Page
 	{
 		const string login = "s3rg0sh4<3Athenaja";
-
+		const string password = "qwerty";
 		private List<string> postsList = new List<string>(); //Given List
 		private List<string> displayPostsList = new List<string>(); //List to be displayed in ListView
 		int pageIndex = -1;
+		bool isLastPage = false;
+		bool isFirstPage = false;
 		const int pageSize = 5; //Set the size of the page
 
 		public MainPage()
 		{
 			this.InitializeComponent();
 			postsList = new List<string>() { "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba" };
-			//Call NextButton_Click in page Constructor to show defalut 10 items
+			AteToday.DataContext = displayPostsList;
 			NextButton_Click(null, null);
+			ArrowLeft.Visibility = Visibility.Collapsed;
 			LoginText.Text = login;
 		}
 
-		private void ExitButton_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
+		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
 
 		private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
 		{
@@ -68,12 +69,16 @@ namespace FoodHelperApp
 		{
 			pageIndex++;
 			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+			AteToday.DataContext = displayPostsList;
+			ArrowRight.Visibility = isLastPage ? Visibility.Collapsed : Visibility.Visible;
 		}
 
 		private void PreviousButton_Click(object sender, RoutedEventArgs e)
 		{
 			pageIndex--;
 			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+			AteToday.DataContext = displayPostsList;
+			ArrowLeft.Visibility = isFirstPage ? Visibility.Collapsed : Visibility.Visible;
 		}
 	}
 }
