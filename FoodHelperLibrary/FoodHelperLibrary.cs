@@ -17,9 +17,9 @@ namespace FoodHelperLibrary
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync("FoodHelper.db", CreationCollisionOption.OpenIfExists);
             //string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "FoodHelper.db");
-            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
-                db.Open();
+                connection.Open();
 
                 String tableCommand =
                     "CREATE TABLE IF NOT EXISTS " +
@@ -71,7 +71,7 @@ namespace FoodHelperLibrary
                     "FOREIGN KEY (userID) REFERENCES Users(userID)" +
                     ");";
 
-                SqliteCommand createTable = new SqliteCommand(tableCommand, db);
+                SqliteCommand createTable = new SqliteCommand(tableCommand, connection);
 
                 createTable.ExecuteReader();
             }
@@ -79,14 +79,23 @@ namespace FoodHelperLibrary
 
         public static void AddUser(string login, string password)
 		{
-            using (SqliteConnection db = new SqliteConnection($"Filename={dbpath}"))
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
-                db.Open();
+                connection.Open();
                 SqliteCommand addUser = new SqliteCommand();
-                addUser.Connection = db;
+                addUser.Connection = connection;
                 addUser.CommandText = "INSERT INTO Users VALUES(@login,@password)";
                 addUser.Parameters.AddWithValue("@login", login);
                 addUser.Parameters.AddWithValue("@password", password);
+			}
+		}
+
+        public static void CheckUser(string login, string password)
+		{
+            using (SqliteConnection connection = new SqliteConnection())
+			{
+                connection.Open();
+
 			}
 		}
     }

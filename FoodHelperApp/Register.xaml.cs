@@ -27,14 +27,15 @@ namespace FoodHelperApp
             this.InitializeComponent();
         }
 
+        private void Registrate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void CloseRegister_Click(object sender, RoutedEventArgs e)
         {
 
         }
 
-        private void Auth_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }

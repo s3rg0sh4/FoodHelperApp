@@ -25,6 +25,16 @@
             <Setter Property="Height" Value="48"/>
             <Setter Property="Padding" Value="20,10,20,10"/>
         </Style>
+        <Style TargetType="PasswordBox">
+            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Background" Value="#7DC3FD"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="Padding" Value="20,10,10,10"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="CornerRadius" Value="30,30,30,30"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="BorderBrush" Value="#00000000"/>
+        </Style>
         <Style TargetType="ListViewItem">
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="Foreground" Value="#323232"/>
@@ -76,12 +86,12 @@
                      Width="350" 
                      PlaceholderText="Логин" 
                      BorderBrush="#00000000" />
-            <TextBox x:Name="Password" 
+            <PasswordBox x:Name="Password" 
                      VerticalAlignment="Center" 
                      Width="350" 
                      PlaceholderText="Пароль" 
                      BorderBrush="#00000000"/>
-            <TextBox x:Name="RepeatPassword" 
+            <PasswordBox x:Name="RepeatPassword" 
                      VerticalAlignment="Bottom" 
                      Width="350" 
                      PlaceholderText="Повторите пароль" 
@@ -89,17 +99,17 @@
                      />
         </Grid>
         <Grid Row="3">
-            <Button x:Name="Auth" 
-                    Content="Авторизоваться" 
+            <Button x:Name="Registrate" 
+                    Content="Зарегистрироваться" 
                     HorizontalAlignment="Center" 
-                    Click="Auth_Click"
+                    Click="Registrate_Click"
                     Margin="0, 26, 0, 0" 
                     VerticalAlignment="Top"
                     FontFamily="Inter"
                     FontSize="20"
                     Foreground="#323232"
                     Background="#7DC3FD"
-                    Height="48" Width="197" 
+                    Height="48" Width="250" 
                     CornerRadius="30,30,30,30"/>
         </Grid>
     </Grid>
