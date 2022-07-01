@@ -37,6 +37,7 @@
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="PlaceholderForeground" Value="#2d2d2d"/>
             <Setter Property="Background" Value="#90FDB67C"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontFamily" Value="Inter"/>
@@ -95,7 +96,7 @@
                 </Grid.ColumnDefinitions>
 
                 <Grid Column="0">
-                    <ComboBox PlaceholderText="Выберите ингредиент" />
+                    <ComboBox PlaceholderText="Выберите ингредиент"/>
                 </Grid>
 
                 <Grid Column="1">

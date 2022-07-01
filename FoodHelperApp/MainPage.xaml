@@ -82,7 +82,7 @@
                     Width="240" 
                     Click="AddRecipeButton_Click"/>
         </Grid>
-        
+
         <Grid x:Name="Blocks" Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="467"/>
@@ -129,7 +129,6 @@
                     </Grid.ColumnDefinitions>
 
                     <ListView x:Name="AteToday" 
-                              ItemsSource="{Binding displayPostsList}" 
                               Grid.Column="1"
                               HorizontalAlignment="Center" 
                               VerticalAlignment="Top"
@@ -348,8 +347,5 @@
                            VerticalAlignment="Bottom"/>
             </Grid>
         </Grid>
-
-
-
     </Grid>
 </Page>

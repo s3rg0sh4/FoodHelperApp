@@ -63,7 +63,7 @@
                      PlaceholderText="Пароль" />
         </Grid>
         <Grid Row="2">
-            <Button x:Name="Auth" 
+            <Button x:Name="Authorisate" 
                     Content="Авторизоваться" 
                     HorizontalAlignment="Center"
                     Click="Auth_Click"

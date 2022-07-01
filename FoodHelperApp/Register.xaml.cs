@@ -31,5 +31,10 @@ namespace FoodHelperApp
         {
 
         }
+
+        private void Auth_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
