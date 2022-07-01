@@ -24,9 +24,17 @@ namespace FoodHelperApp
 	{
 		const string login = "s3rg0sh4<3Athenaja";
 
+		private List<string> postsList = new List<string>(); //Given List
+		private List<string> displayPostsList = new List<string>(); //List to be displayed in ListView
+		int pageIndex = -1;
+		const int pageSize = 5; //Set the size of the page
+
 		public MainPage()
 		{
 			this.InitializeComponent();
+			postsList = new List<string>() { "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba" };
+			//Call NextButton_Click in page Constructor to show defalut 10 items
+			NextButton_Click(null, null);
 			LoginText.Text = login;
 		}
 
@@ -53,6 +61,19 @@ namespace FoodHelperApp
 		private void AddAteToday_Click(object sender, RoutedEventArgs e)
 		{
 
+		}
+
+
+		private void NextButton_Click(object sender, RoutedEventArgs e)
+		{
+			pageIndex++;
+			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+		}
+
+		private void PreviousButton_Click(object sender, RoutedEventArgs e)
+		{
+			pageIndex--;
+			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
 		}
 	}
 }

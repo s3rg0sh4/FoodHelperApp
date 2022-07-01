@@ -27,6 +27,11 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
         </Style>
+        <Style TargetType="ListViewItem">
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="Foreground" Value="#323232"/>
+            <Setter Property="FontSize" Value="32"/>
+        </Style>
     </Page.Resources>
 
     <Grid x:Name="MainGrid" Background="White" Margin="50,55,50,75" HorizontalAlignment="Left" VerticalAlignment="Top">
@@ -62,7 +67,19 @@
                 </Grid.RowDefinitions>
                 <Rectangle HorizontalAlignment="Center" Grid.Row="0" Height="370" Width="467" Fill="#EDEDED" VerticalAlignment="Center" RadiusX="30" RadiusY="30"/>
                 <Button x:Name="AddAteToday" Content="Сегодня съедено +" Grid.Row="0" Margin="16, 24" HorizontalAlignment="Center" VerticalAlignment="Top" Width="435" Click="AddAteToday_Click"/>
-                <TextBlock Text="Сегодня вы съели" Grid.Row="0" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                <TextBlock Text="Сегодня вы съели" Grid.Row="0" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300"/>
+                <Grid Grid.Row="0" Margin="0,135,0,0" HorizontalAlignment="Center" VerticalAlignment="Top">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50"/>
+                        <ColumnDefinition Width="300"/>
+                        <ColumnDefinition Width="50"/>
+                    </Grid.ColumnDefinitions>
+
+                    <ListView x:Name="AteToday" ItemsSource="{Binding displayPostsList}" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="300" HorizontalContentAlignment="Left">
+                    </ListView>
+                    <Button x:Name="PreviousButton" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Click="PreviousButton_Click" CornerRadius="0,0,0,0"/>
+                    <Button x:Name="NextButton" Grid.Column="2" HorizontalAlignment="Center" Click="NextButton_Click" CornerRadius="0,0,0,0"/>
+                </Grid>
 
 
 
