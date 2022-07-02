@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="FoodHelperApp.AddIngrediant"
+    x:Class="FoodHelperApp.AddBurned"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FoodHelperApp"
@@ -24,16 +24,16 @@
         </Style>
     </Page.Resources>
 
-    <Grid Height="744" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
+    <Grid Height="395" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
         <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
             <RowDefinition Height="100"/>
-            <RowDefinition Height="360"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="100"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button x:Name="CloseAddIngredient" 
+            <Button x:Name="CloseAddBurned" 
                     Width="100" Height="100" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
@@ -45,26 +45,13 @@
         </Grid>
 
         <Grid Grid.Row="1">
-            <TextBlock Text="Пожалуйста, указывайте параметры на 100 грамм" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
+            <TextBlock Text="Cколько калорий вы сожгли" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <TextBox Grid.Row="0" x:Name="NameIngFyeld" VerticalAlignment="Center" PlaceholderText="Наименование"/>
-            <TextBox Grid.Row="1" x:Name="CountCal" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
-            <TextBox Grid.Row="2" x:Name="CountProtein" VerticalAlignment="Center" PlaceholderText="Количество белков"/>
-            <TextBox Grid.Row="3" x:Name="CountrFat" VerticalAlignment="Center" PlaceholderText="Количество жиров"/>
-            <TextBox Grid.Row="4" x:Name="CountCarb" VerticalAlignment="Center" PlaceholderText="Количесвто углеводов"/>
-           
+            <TextBox Grid.Row="0" x:Name="AddBurned" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Button x:Name="AddIngredient" 
+            <Button x:Name="AddBurnedButton" 
                     Content="Добавить" 
                     HorizontalAlignment="Center" 
                     Margin="0,12,0,0" 
