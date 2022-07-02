@@ -6,9 +6,72 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    Height="1024"
+    Width="1440"
+    Background="#FFFFFF">
 
-    <Grid>
+    <Page.Resources>
+        <Style TargetType="TextBox">
+            <Setter Property="Foreground" Value="#2D2D2D"/>
+            <Setter Property="Background" Value="#90FDB67C"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="CornerRadius" Value="30,30,30,30"/>
+            <Setter Property="Height" Value="48"/>
+            <Setter Property="Padding" Value="20,11,20,10"/>
+            <Setter Property="Width" Value="350"/>
+            <Setter Property="BorderThickness" Value="0"/>
+        </Style>
+    </Page.Resources>
 
+    <Grid Height="744" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="360"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Button x:Name="CloseRegister" 
+                    Width="100" Height="100" 
+                    Click="CloseRegister_Click" 
+                    VerticalAlignment="Top" 
+                    HorizontalAlignment="Right" 
+                    Background="#00FFFFFF" 
+                    Foreground="#323232"
+                    FontFamily="Marlett"
+                    FontSize="50"
+                    Content="r"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <TextBlock Text="Пожалуйста, указывайте параметры на 100 грамм" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
+        </Grid>
+        <Grid Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            
+            <TextBox Grid.Row="0" x:Name="NameIngFyeld" VerticalAlignment="Center" PlaceholderText="Наименование"/>
+            <TextBox Grid.Row="1" x:Name="CountCal" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
+            <TextBox Grid.Row="2" x:Name="CountProtein" VerticalAlignment="Center" PlaceholderText="Количество белков"/>
+            <TextBox Grid.Row="3" x:Name="CountrFat" VerticalAlignment="Center" PlaceholderText="Количество жиров"/>
+            <TextBox Grid.Row="4" x:Name="CountCarb" VerticalAlignment="Center" PlaceholderText="Количесвто углеводов"/>
+           
+        </Grid>
+        <Grid Grid.Row="3">
+            <Button x:Name="Registrate" 
+                    Content="Добавить" 
+                    HorizontalAlignment="Center" 
+                    Click="Registrate_Click"
+                    Margin="0,12,0,0" 
+                    VerticalAlignment="Top"
+                    Width="250"/>
+        </Grid>
     </Grid>
 </Page>
