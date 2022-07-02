@@ -12,8 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
+using FoodHelperLibrary;
 
 namespace FoodHelperApp
 {
@@ -29,7 +28,8 @@ namespace FoodHelperApp
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-
+            if (Password.Password == RepeatPassword.Password)
+                FoodHelperDB.AddUser(Login.Text, Password.Password);
         }
 
         private void CloseRegister_Click(object sender, RoutedEventArgs e)

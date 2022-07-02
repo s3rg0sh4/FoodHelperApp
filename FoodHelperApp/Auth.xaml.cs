@@ -23,13 +23,19 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class Auth : Page
 	{
+		private string login;
+		private string password;
 		public Auth()
 		{
+
 			this.InitializeComponent();
 		}
 
         private void Auth_Click(object sender, RoutedEventArgs e)
         {
+			login = Login.Text;
+			password = Password.Password;
+
 
         }
 

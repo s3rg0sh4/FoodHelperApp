@@ -5,7 +5,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.Sqlite;
-
 using Windows.Storage;
 
 namespace FoodHelperLibrary
@@ -21,7 +20,7 @@ namespace FoodHelperLibrary
             {
                 connection.Open();
 
-                String tableCommand =
+                new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Ingredients (" +
                     "ingredientID INTEGER PRIMARY KEY NOT NULL, " +
@@ -42,15 +41,16 @@ namespace FoodHelperLibrary
                     "ingredientID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
                     "weight DOUBLE NOT NULL, " +
-                    "FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID), " +
-                    "FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
+                    "FOREIGN FKingredientID KEY (ingredientID) REFERENCES Ingredients(ingredientID), " +
+                    "FOREIGN FKrecipeID KEY (recipeID) REFERENCES Recipies(recipeID), " +
                     "PRIMARY KEY (ingredientID, recipeID)" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users (" +
                     "userID INTEGER PRIMARY KEY NOT NULL, " +
-                    "login CHARACTER(20) NOT NULL, " +
+                    "login CHARACTER(20) NOT NULL UNIQUE, " +
                     "password CHARACTER(20) NOT NULL" +
+					"" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users_Recepies (" +
@@ -58,9 +58,9 @@ namespace FoodHelperLibrary
                     "recipeID INTEGER NOT NULL, " +
                     "date DATE NOT NULL, " +
                     "count INTEGER, " +
-                    "FOREIGN KEY (userID) REFERENCES Users(userID), " +
-                    "FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
-                    "PRIMARY KEY (userID, recipeID, date)" +
+                    "FOREIGN KEY FKuserID (userID) REFERENCES Users(userID), " +
+                    "FOREIGN KEY FKrecipeID (recipeID) REFERENCES Recipies(recipeID), " +
+                    "PRIMARY KEY UsersRecepiesPK (userID, recipeID, date)" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Burned (" +
@@ -68,12 +68,9 @@ namespace FoodHelperLibrary
                     "calories DOUBLE, " +
                     "date DATE, " +
                     "userID INTEGER NOT NULL, " +
-                    "FOREIGN KEY (userID) REFERENCES Users(userID)" +
-                    ");";
-
-                SqliteCommand createTable = new SqliteCommand(tableCommand, connection);
-
-                createTable.ExecuteReader();
+                    "FOREIGN KEY FKuserID (userID) REFERENCES Users(userID)" +
+                    ");", 
+                    connection).ExecuteReader();
             }
         }
 
@@ -82,21 +79,29 @@ namespace FoodHelperLibrary
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
                 connection.Open();
-                SqliteCommand addUser = new SqliteCommand();
-                addUser.Connection = connection;
-                addUser.CommandText = "INSERT INTO Users VALUES(@login,@password)";
-                addUser.Parameters.AddWithValue("@login", login);
-                addUser.Parameters.AddWithValue("@password", password);
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = connection;
+                command.CommandText = "INSERT INTO Users VALUES(@login,@password)";
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                command.ExecuteNonQuery();
+
 			}
 		}
 
-        public static void CheckUser(string login, string password)
+        public static bool GetUserList(string login, string password)
 		{
-            using (SqliteConnection connection = new SqliteConnection())
+
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
                 connection.Open();
-
-			}
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT * FROM Users" +
+                    "WHERE login=@login and password=@password";
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@password", password);
+                return command.ExecuteReader().HasRows;
+            }
 		}
     }
 

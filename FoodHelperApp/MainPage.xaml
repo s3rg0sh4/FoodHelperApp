@@ -29,7 +29,6 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Padding" Value="20"/>
         </Style>
-
     </Page.Resources>
 
     <Grid 
