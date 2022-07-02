@@ -8,28 +8,36 @@
     <Application.Resources>
         <Style x:Key="Burned" TargetType="Image">
             <Setter Property="Source" Value="Icons/Burned.png"/>
-            <Setter Property="Height" Value="160"/>
-            <Setter Property="Width" Value="160"/>
+            <Setter Property="MaxHeight" Value="160"/>
+            <Setter Property="MaxWidth" Value="160"/>
+            <Setter Property="MinHeight" Value="16"/>
+            <Setter Property="MinWidth" Value="16"/>
         </Style>
         <Style x:Key="Gained" TargetType="Image">
             <Setter Property="Source" Value="Icons/Gained.png"/>
-            <Setter Property="Height" Value="219"/>
-            <Setter Property="Width" Value="219"/>
+            <Setter Property="MaxHeight" Value="219"/>
+            <Setter Property="MaxWidth" Value="219"/>
         </Style>
         <Style x:Key="Proteins" TargetType="Image">
             <Setter Property="Source" Value="Icons/Proteins.png"/>
-            <Setter Property="Height" Value="101"/>
-            <Setter Property="Width" Value="199"/>
+            <Setter Property="MaxHeight" Value="101"/>
+            <Setter Property="MaxWidth" Value="199"/>
+            <Setter Property="MinHeight" Value="16"/>
+            <Setter Property="MinWidth" Value="16"/>
         </Style>
         <Style x:Key="Fats" TargetType="Image">
             <Setter Property="Source" Value="Icons/Fats.png"/>
-            <Setter Property="Height" Value="174"/>
-            <Setter Property="Width" Value="122"/>
+            <Setter Property="MaxHeight" Value="174"/>
+            <Setter Property="MaxWidth" Value="122"/>
+            <Setter Property="MinHeight" Value="16"/>
+            <Setter Property="MinWidth" Value="16"/>
         </Style>
         <Style x:Key="Carbs" TargetType="Image">
             <Setter Property="Source" Value="Icons/Carbs.png"/>
-            <Setter Property="Height" Value="149"/>
-            <Setter Property="Width" Value="122"/>
+            <Setter Property="MaxHeight" Value="149"/>
+            <Setter Property="MaxWidth" Value="122"/>
+            <Setter Property="MinHeight" Value="16"/>
+            <Setter Property="MinWidth" Value="16"/>
         </Style>
         
         <Style TargetType="Button">

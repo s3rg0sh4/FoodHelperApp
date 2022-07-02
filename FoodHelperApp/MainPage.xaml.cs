@@ -16,8 +16,6 @@ using Windows.UI.Xaml.Navigation;
 using FoodHelperLibrary;
 using Windows.Storage;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
-
 namespace FoodHelperApp
 {
 	/// <summary>
@@ -38,10 +36,9 @@ namespace FoodHelperApp
 		{
 			this.InitializeComponent();
 			postsList = new List<string>() { "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba", "Aboba" };
-			AteToday.DataContext = displayPostsList;
+			AteTodayGridView.DataContext = displayPostsList;
 			NextButton_Click(null, null);
 			ArrowLeft.Visibility = Visibility.Collapsed;
-			LoginText.Text = FoodHelperDB.GetUserID("admin").ToString();
 		}
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
@@ -71,7 +68,7 @@ namespace FoodHelperApp
 		{
 			pageIndex++;
 			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
-			AteToday.DataContext = displayPostsList;
+			AteTodayGridView.DataContext = displayPostsList;
 			ArrowRight.Visibility = isLastPage ? Visibility.Collapsed : Visibility.Visible;
 		}
 
@@ -79,7 +76,7 @@ namespace FoodHelperApp
 		{
 			pageIndex--;
 			displayPostsList = postsList.Skip(pageIndex * pageSize).Take(pageSize).ToList();
-			AteToday.DataContext = displayPostsList;
+			AteTodayGridView.DataContext = displayPostsList;
 			ArrowLeft.Visibility = isFirstPage ? Visibility.Collapsed : Visibility.Visible;
 		}
 	}

@@ -77,7 +77,8 @@ namespace FoodHelperLibrary
                     "SELECT recipeID, recipeName, SUM(calories * ir.weight / 100) AS calories, " +
                     "SUM(proteins * ir.weight / 100) AS proteins, " +
                     "SUM(fats * ir.weight / 100) AS fats, SUM(carbs * ir.weight / 100) AS carbs " +
-                    "FROM Ingredients_Recipies ir JOIN Ingredients i USING(ingredientID) " +
+                    "FROM Ingredients_Recipies ir " +
+					"JOIN Ingredients i USING(ingredientID) " +
                     "JOIN Recipies r USING(recipeID) " +
                     "GROUP BY recipeID ",
                     connection).ExecuteReader();
@@ -91,23 +92,22 @@ namespace FoodHelperLibrary
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO Users VALUES(@login,@password)";
+                command.CommandText = "INSERT INTO Users(login, password) VALUES(@login,@password)";
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
                 command.ExecuteNonQuery();
-
 			}
 		}
 
-        public static bool GetUserList(string login, string password)
+        public static bool CheckUser(string login, string password)
 		{
-
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT * FROM Users" +
-                    "WHERE login=@login and password=@password";
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM Users " +
+                    "WHERE login LIKE @login AND password LIKE @password; ";
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
                 return command.ExecuteReader().HasRows;
