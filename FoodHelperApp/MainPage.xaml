@@ -7,18 +7,17 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Background="#FFFFFF"
-    HorizontalAlignment="Left"
-    VerticalAlignment="Top">
+    HorizontalAlignment="Stretch"
+    VerticalAlignment="Stretch"  MinHeight="600" MinWidth="1100" Height="915" Width="1481">
 
     <Page.Resources>
         <Style x:Key="WhiteBlock" TargetType="Grid">
-            <Setter Property="Height" Value="335"/>
-            <Setter Property="Width" Value="369"/>
             <Setter Property="Background" Value="#FFFFFF"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
+            <Setter Property="VerticalAlignment" Value="Stretch" />
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Padding" Value="20"/>
+            <Setter Property="Margin" Value="12"/>
         </Style>
         <Style x:Key="GrayBlock" TargetType="Grid">
             <Setter Property="Background" Value="#EDEDED"/>
@@ -32,40 +31,40 @@
     <Grid 
         x:Name="MainGrid"
         Background="White"
-        Margin="50,55,50,75"
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center">
+        Margin="50"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
-            <RowDefinition Height="83"/>
+            <RowDefinition MinHeight="10" MaxHeight="83"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*" MinWidth="144"/>
-                <ColumnDefinition Width="2*"/>
-                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition MinWidth="100"/>
+                <ColumnDefinition Width="3*" MinWidth="422"/>
             </Grid.ColumnDefinitions>
 
             <Button x:Name="ExitButton"
                     Margin="0,0,0,0"
                     Grid.Column="0"
                     Content="Выйти" 
-                    Width="144" 
+                    HorizontalAlignment="Stretch"
                     Click="ExitButton_Click"/>
             <TextBlock x:Name="LoginText"
                        Grid.Column="1"
                        Text="Login" 
                        FontSize="40"
-                       HorizontalAlignment="Center" 
+                       HorizontalAlignment="Stretch" 
                        Height="48" 
-                       Width="600" 
                        TextAlignment="Center"/>
             <Button x:Name="AddIngredientButton" 
                     Grid.Column="2"
-                    HorizontalAlignment="Left"
+                    HorizontalAlignment="Right"
                     Content="Добавить ингредиет +"
                     Width="288" 
+                    Margin="0,0,250,0"
                     Click="AddIngredientButton_Click"/>
             <Button x:Name="AddRecipeButton"
                     Grid.Column="2" 
@@ -75,7 +74,7 @@
                     Click="AddRecipeButton_Click"/>
         </Grid>
 
-        <Grid x:Name="Blocks" Grid.Row="2">
+        <Grid x:Name="Blocks" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="32"/>
@@ -83,9 +82,9 @@
             </Grid.ColumnDefinitions>
             <Grid Grid.Column="0">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="23"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="467*"/>
+                    <RowDefinition Height="23*"/>
+                    <RowDefinition Height="467*"/>
                 </Grid.RowDefinitions>
                 <Grid Style="{StaticResource GrayBlock}" HorizontalAlignment="Stretch">
                     <Button x:Name="AddAteToday"
@@ -94,25 +93,23 @@
                             VerticalAlignment="Top"
                             Click="AddAteToday_Click"/>
                     <TextBlock Text="Сегодня вы съели" 
-                               Margin="0,87,0,0" 
-                               HorizontalAlignment="Stretch"
+                               Margin="0,60,0,0" 
+                               HorizontalAlignment="Center"
                                VerticalAlignment="Top"/>
                     <Grid Margin="0,135,0,0"
                           HorizontalAlignment="Center"
-                          VerticalAlignment="Top"
-                          Height="200">
+                          VerticalAlignment="Stretch">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="6*"/>
-                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="50"/>
                         </Grid.ColumnDefinitions>
-                        <GridView x:Name="AteTodayGridView" Grid.Column="1" Width="300">
-                            
+                        <GridView x:Name="AteTodayGridView" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+
                         </GridView>
                         <Button x:Name="ArrowLeft" 
                                 Grid.Column="0"
                                 HorizontalAlignment="Center" 
-                                Height="200" 
                                 Click="PreviousButton_Click" 
                                 Background="#EDEDED"
                                 FontFamily="Marlett"
@@ -123,7 +120,6 @@
                         <Button x:Name="ArrowRight"
                                 Grid.Column="2"
                                 HorizontalAlignment="Center"
-                                Height="200"
                                 Click="NextButton_Click"
                                 Background="#EDEDED"
                                 FontFamily="Marlett"
@@ -139,10 +135,17 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Top"
                             Click="AddBurnedToday_Click"/>
-                    
-                    <TextBlock Text="Сегодня вы сожгли" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Image Style="{StaticResource Burned}" Margin="0,80,0,0"/>
-                    <TextBlock x:Name="BurnedToday" Margin="24" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+
+                    <Grid Margin="0,48,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="48"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="48"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Text="Сегодня вы сожгли" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        <Image Style="{StaticResource Burned}" Grid.Row="1"/>
+                        <TextBlock x:Name="BurnedToday" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </Grid>
                 </Grid>
             </Grid>
             <Grid Style="{StaticResource GrayBlock}" Grid.Column="2">
@@ -155,24 +158,44 @@
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
                 <Grid Style="{StaticResource WhiteBlock}" Grid.Column="0" Grid.Row="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
                     <TextBlock Text="Калории" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Image Style="{StaticResource Gained}"/>
-                    <TextBlock x:Name="Gained" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <Image Style="{StaticResource Gained}" Grid.Row="1"/>
+                    <TextBlock x:Name="Gained" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                 </Grid>
                 <Grid Style="{StaticResource WhiteBlock}" Grid.Column="1" Grid.Row="0">
-                    <TextBlock Text="Белки"  HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Image Style="{StaticResource Proteins}"/>
-                    <TextBlock x:Name="Proteins" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Белки" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Image Style="{StaticResource Proteins}" Grid.Row="1"/>
+                    <TextBlock x:Name="Proteins" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                 </Grid>
                 <Grid Style="{StaticResource WhiteBlock}" Grid.Column="0" Grid.Row="1">
-                    <TextBlock Text="Жиры" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Image Style="{StaticResource Fats}"/>
-                    <TextBlock x:Name="Fats" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
+                    <TextBlock Text="Жиры" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
+                    <Image Style="{StaticResource Fats}" Grid.Row="1"/>
+                    <TextBlock x:Name="Fats" Text="100" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                 </Grid>
                 <Grid Style="{StaticResource WhiteBlock}" Grid.Column="1" Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="48"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="48"/>
+                    </Grid.RowDefinitions>
                     <TextBlock Text="Углеводы" HorizontalAlignment="Center" VerticalAlignment="Top"/>
-                    <Image Style="{StaticResource Carbs}"/>
-                    <TextBlock x:Name="Carbs" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    <Image Style="{StaticResource Carbs}" Grid.Row="1"/>
+                    <TextBlock x:Name="Carbs" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                 </Grid>
             </Grid>
         </Grid>
