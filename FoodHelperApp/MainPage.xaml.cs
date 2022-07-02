@@ -41,7 +41,7 @@ namespace FoodHelperApp
 			AteToday.DataContext = displayPostsList;
 			NextButton_Click(null, null);
 			ArrowLeft.Visibility = Visibility.Collapsed;
-			LoginText.Text = login;
+			LoginText.Text = FoodHelperDB.GetUserID("admin").ToString();
 		}
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();

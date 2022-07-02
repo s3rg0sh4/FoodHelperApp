@@ -110,6 +110,30 @@ namespace FoodHelperLibrary
                 return command.ExecuteReader().HasRows;
             }
 		}
+
+        public static int GetUserID(string login)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT userID FROM Users " +
+                    "WHERE login = @login ";
+                command.Parameters.AddWithValue("@login", login);
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows)
+                    while (result.Read()) { 
+                        return int.Parse(result["userID"].ToString());
+                    }
+                return -1;
+            }
+        }
+
+        public static int GetUserStats(string userID)
+        {
+            return -1;
+        }
     }
 
 }
