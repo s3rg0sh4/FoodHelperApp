@@ -69,7 +69,15 @@ namespace FoodHelperLibrary
                     "date DATE, " +
                     "userID INTEGER NOT NULL, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID)" +
-                    ");", 
+                    ");" +
+                    "CREATE VIEW RecipeStat AS " +
+                    "SELECT RecipeID, RecipeName, SUM(Calories * ir.Weight / 100) AS Calories," +
+                    "SUM(Proteins * ir.Weight / 100) AS Proteins, " +
+                    "SUM(Fat * ir.Weight / 100) AS Fat, SUM(Carbs * ir.Weight / 100) AS Carbs" +
+                    "FROM Ingredient_Recipe ir" +
+                    "JOIN Ingredient i USING(IngredientID) " +
+                    "JOIN Recipe r USING(RecipeID) " +
+                    "GROUP BY RecipeID",
                     connection).ExecuteReader();
             }
         }
