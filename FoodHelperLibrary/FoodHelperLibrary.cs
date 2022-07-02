@@ -37,7 +37,7 @@ namespace FoodHelperLibrary
                     "weight DOUBLE NOT NULL" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
-                    "Ingredients_Recipes (" +
+                    "Ingredients_Recipies (" +
                     "ingredientID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
                     "weight DOUBLE NOT NULL, " +
@@ -70,14 +70,13 @@ namespace FoodHelperLibrary
                     "userID INTEGER NOT NULL, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID)" +
                     ");" +
-                    "CREATE VIEW RecipeStat AS " +
-                    "SELECT RecipeID, RecipeName, SUM(Calories * ir.Weight / 100) AS Calories," +
-                    "SUM(Proteins * ir.Weight / 100) AS Proteins, " +
-                    "SUM(Fat * ir.Weight / 100) AS Fat, SUM(Carbs * ir.Weight / 100) AS Carbs" +
-                    "FROM Ingredient_Recipe ir" +
-                    "JOIN Ingredient i USING(IngredientID) " +
-                    "JOIN Recipe r USING(RecipeID) " +
-                    "GROUP BY RecipeID",
+                    "CREATE VIEW IF NOT EXISTS RecipeStat AS " +
+                    "SELECT recipeID, recipeName, SUM(calories * ir.weight / 100) AS calories, " +
+                    "SUM(proteins * ir.weight / 100) AS proteins, " +
+                    "SUM(fats * ir.weight / 100) AS fats, SUM(carbs * ir.weight / 100) AS carbs " +
+                    "FROM Ingredients_Recipies ir JOIN Ingredients i USING(ingredientID) " +
+                    "JOIN Recipies r USING(recipeID) " +
+                    "GROUP BY recipeID ",
                     connection).ExecuteReader();
             }
         }
