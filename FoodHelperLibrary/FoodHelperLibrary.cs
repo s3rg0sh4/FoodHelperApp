@@ -41,9 +41,9 @@ namespace FoodHelperLibrary
                     "ingredientID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
                     "weight DOUBLE NOT NULL, " +
-                    "FOREIGN FKingredientID KEY (ingredientID) REFERENCES Ingredients(ingredientID), " +
-                    "FOREIGN FKrecipeID KEY (recipeID) REFERENCES Recipies(recipeID), " +
-                    "PRIMARY KEY (ingredientID, recipeID)" +
+                    "CONSTRAINT FKingredientID FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID), " +
+                    "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
+                    "CONSTRAINT IngredientsRecipesPK PRIMARY KEY (ingredientID, recipeID)" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users (" +
@@ -58,9 +58,9 @@ namespace FoodHelperLibrary
                     "recipeID INTEGER NOT NULL, " +
                     "date DATE NOT NULL, " +
                     "count INTEGER, " +
-                    "FOREIGN KEY FKuserID (userID) REFERENCES Users(userID), " +
-                    "FOREIGN KEY FKrecipeID (recipeID) REFERENCES Recipies(recipeID), " +
-                    "PRIMARY KEY UsersRecepiesPK (userID, recipeID, date)" +
+                    "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID), " +
+                    "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
+                    "CONSTRAINT UsersRecepiesPK PRIMARY KEY (userID, recipeID, date)" +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Burned (" +
@@ -68,7 +68,7 @@ namespace FoodHelperLibrary
                     "calories DOUBLE, " +
                     "date DATE, " +
                     "userID INTEGER NOT NULL, " +
-                    "FOREIGN KEY FKuserID (userID) REFERENCES Users(userID)" +
+                    "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID)" +
                     ");", 
                     connection).ExecuteReader();
             }
