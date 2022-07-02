@@ -16,8 +16,6 @@ using Windows.UI.Xaml.Navigation;
 using FoodHelperLibrary;
 using Windows.Storage;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x419
-
 namespace FoodHelperApp
 {
 	/// <summary>
