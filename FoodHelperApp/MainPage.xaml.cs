@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using FoodHelperLibrary;
 using Windows.Storage;
+using Windows.UI.Core;
 
 namespace FoodHelperApp
 {
@@ -40,6 +41,7 @@ namespace FoodHelperApp
 			NextButton_Click(null, null);
 			ArrowLeft.Visibility = Visibility.Collapsed;
 		}
+
 
 		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
 

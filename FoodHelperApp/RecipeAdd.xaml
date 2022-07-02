@@ -21,6 +21,7 @@
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
+            <Setter Property="Margin" Value="12"/>
         </Style>
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
@@ -29,10 +30,9 @@
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
-            <Setter Property="BorderBrush" Value="#00000000"/>
-            <Setter Property="Width" Value="317"/>
-            <Setter Property="Margin" Value="0,18,0,0"/>
-            <Setter Property="Padding" Value="25,10,5,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Padding" Value="25,12,5,10"/>
             <Setter Property="PlaceholderText" Value="Введите количество грамм"/>
         </Style>
         <Style TargetType="ComboBox">
@@ -43,18 +43,18 @@
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
-            <Setter Property="BorderBrush" Value="#00000000"/>
-            <Setter Property="Width" Value="591"/>
-            <Setter Property="Margin" Value="33,18,30,0"/>
-            <Setter Property="Padding" Value="30,10,0,10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Padding" Value="30,12,0,10"/>
+            <Setter Property="HorizontalAlignment" Value="Stretch"/>
         </Style>
     </Page.Resources>
-    
-    
+
+
     <Grid Width="1004" Height="876">
         <Grid.RowDefinitions>
             <RowDefinition Height="48"/>
-            <RowDefinition Height="65"/>
+            <RowDefinition Height="64"/>
             <RowDefinition Height="763"/>
         </Grid.RowDefinitions>
 
@@ -65,49 +65,31 @@
                 <ColumnDefinition Width="275"/>
             </Grid.ColumnDefinitions>
 
-            <Grid Row="0" Column="0">
-                <Button x:Name="BackToMain" Content="Назад" HorizontalAlignment="Stretch"/>
-            </Grid>
-            <Grid Row="0" Column="1">
-                <TextBlock Text="Добавление рецепта" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-            </Grid>
-
-            <Grid Row="0" Column="2">
-                <Button x:Name="CreateIngredient" Content="Создать инредиент" HorizontalAlignment="Stretch"/>
-            </Grid>
+            <Button x:Name="BackToMain" Grid.Column="0" Content="Назад" HorizontalAlignment="Stretch" Margin="0"/>
+            <TextBlock Text="Добавление рецепта" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            <Button x:Name="CreateIngredient" Grid.Column="2" Content="Создать инредиент" HorizontalAlignment="Stretch" Margin="0"/>
         </Grid>
 
-        <Grid Row="2" CornerRadius="30,30,30,30" Background="#EDEDED">
+        <Grid Grid.Row="2" CornerRadius="30,30,30,30" Background="#EDEDED" Padding="0">
             <Grid.RowDefinitions>
-                <RowDefinition Height="68"/>
+                <RowDefinition Height="144"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="95"/>
             </Grid.RowDefinitions>
 
 
-            <Grid Row="0">
-                <Button x:Name="AddIngredient" Content="Добавить инредиент" HorizontalAlignment="Center" Width="293" Margin="0,20,0,0"/>
-            </Grid>
+                <Button x:Name="AddIngredient" Grid.Row="0" Content="Добавить инредиент" VerticalAlignment="Top" HorizontalAlignment="Center" Width="300"/>
+                <TextBox x:Name="RecipeNameField" Grid.Row="0" VerticalAlignment="Bottom"/>
 
-            <Grid Row="1">
+                <Grid Grid.Row="2">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="654"/>
-                    <ColumnDefinition Width="350"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-
-                <Grid Column="0">
-                    <ComboBox PlaceholderText="Выберите ингредиент"/>
-                </Grid>
-
-                <Grid Column="1">
-                    <TextBox VerticalAlignment="Top"/>
-                </Grid>
+                <ComboBox PlaceholderText="Выберите ингредиент" Grid.Column="0"/>
+                <TextBox VerticalAlignment="Top" Grid.Column="1"/>
             </Grid>
-            
-            <Grid Row="2">
-                <Button x:Name="AddRecipe" Content="Добавить рецепт" VerticalAlignment="Top" HorizontalAlignment="Right" Width="293" Margin="0,0,20,0"/>
-            </Grid>
+            <Button x:Name="AddRecipe" Grid.Row="2" Content="Добавить рецепт" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="300"/>
         </Grid>
-        
+
     </Grid>
 </Page>
