@@ -12,6 +12,9 @@ namespace FoodHelperLibrary
     public static class FoodHelperDB
     {
         readonly static string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "FoodHelper.db");
+
+        private static string today = DateTime.Now.ToString("yyyy-mm-dd");
+
         public async static void InitializeDatabase()
         {
             await ApplicationData.Current.LocalFolder.CreateFileAsync("FoodHelper.db", CreationCollisionOption.OpenIfExists);
@@ -130,10 +133,70 @@ namespace FoodHelperLibrary
             }
         }
 
-        public static int GetUserStats(string userID)
+        public static int GetUserStatsBurned(int userID, int days)
         {
-            return -1;
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT calories FROM Burned b " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND 'now'";
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@days", days);
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows)
+                    while (result.Read())
+                    {
+                        return int.Parse(result["calories"].ToString());
+                    }
+                return -1;
+            }
+        }
+
+        public static void AddUserStatsBurned(int burnedCal, int userID)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "UPDATE Burned AS b SET calories = calories + @burnedCal " +
+                    "WHERE userID = @userID AND `date`= '@date' ";
+                command.Parameters.AddWithValue("@burnedCal", burnedCal);
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@date", today);
+                command.Connection = connection;
+                command.ExecuteNonQuery();
+            }
+        }
+
+        public static List<(double, double, double, double)> GetUserStats(int userID, int days)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                var stats = new List<(double cal, double protein, double fat, double carb)>();
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
+                    "SUM(proteins*`count`) AS protein, " +
+                    "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
+                    "JOIN Users_Recepies ur USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND 'now'";
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@days", days);
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows)
+                    while (result.Read())
+                    {
+                        stats.Add((double.Parse(result["cal"].ToString()),
+                            double.Parse(result["protein"].ToString()),
+                            double.Parse(result["fat"].ToString()),
+                            double.Parse(result["carb"].ToString())));
+                    }
+                else return null;
+                return stats;
+            }
         }
     }
-
 }

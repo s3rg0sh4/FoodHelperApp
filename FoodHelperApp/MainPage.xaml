@@ -92,10 +92,9 @@
                 <Grid Style="{StaticResource GrayBlock}" Grid.Row="0" Height="370" Width="467">
                     <Button x:Name="AddAteToday"
                             Content="Сегодня съедено +"
-                            Margin="16, 24" 
                             HorizontalAlignment="Center" 
                             VerticalAlignment="Top" 
-                            Width="435"
+                            Width="400"
                             Click="AddAteToday_Click"/>
                     <TextBlock Text="Сегодня вы съели" 
                                Margin="0,87,0,0" 
@@ -147,10 +146,9 @@
                 <Grid Style="{StaticResource GrayBlock}" Grid.Row="2" Height="370" Width="467">
                     <Button x:Name="AddBurnedToday"
                             Content="Сегодня сожжено +"
-                            Margin="16,24"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
-                            Width="435"
+                            Width="400"
                             Click="AddBurnedToday_Click"/>
                     <TextBlock Text="Сегодня вы сожгли" Margin="0,87,0,0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                     <Image Style="{StaticResource Burned}" Margin="0,80,0,0"/>
