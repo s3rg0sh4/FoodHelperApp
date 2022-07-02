@@ -28,8 +28,9 @@ namespace FoodHelperApp
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
+            bool userExists = false;
             if (Password.Password == RepeatPassword.Password)
-                FoodHelperDB.AddUser(Login.Text, Password.Password);
+                userExists = FoodHelperDB.CheckUser(Login.Text, Password.Password);
         }
 
         private void CloseRegister_Click(object sender, RoutedEventArgs e)
