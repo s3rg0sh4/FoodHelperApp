@@ -119,8 +119,8 @@
     <Compile Include="AddBurned.xaml.cs">
       <DependentUpon>AddBurned.xaml</DependentUpon>
     </Compile>
-    <Compile Include="AddIngrediant.xaml.cs">
-      <DependentUpon>AddIngrediant.xaml</DependentUpon>
+    <Compile Include="AddIngredient.xaml.cs">
+      <DependentUpon>AddIngredient.xaml</DependentUpon>
     </Compile>
     <Compile Include="AddMeal.xaml.cs">
       <DependentUpon>AddMeal.xaml</DependentUpon>
@@ -174,7 +174,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="AddIngrediant.xaml">
+    <Page Include="AddIngredient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

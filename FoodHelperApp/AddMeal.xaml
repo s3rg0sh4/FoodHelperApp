@@ -49,15 +49,15 @@
             <TextBlock Text="Что скушали?" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
         </Grid>
         <Grid Grid.Row="2">
-            <ComboBox Grid.Row="0" x:Name="AddMeal" VerticalAlignment="Center" HorizontalAlignment="Center" PlaceholderText="Количество калорий"/>
+            <ComboBox Grid.Row="0" x:Name="AddMealText" VerticalAlignment="Center" HorizontalAlignment="Center" PlaceholderText="Количество калорий"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Button x:Name="AddMealButton" 
-                    Content="Добавить" 
+            <Button Content="Добавить" 
                     HorizontalAlignment="Center" 
                     Margin="0,12,0,0" 
                     VerticalAlignment="Top"
-                    Width="250"/>
+                    Width="250"
+                    Click="AddMeal_Click"/>
         </Grid>
     </Grid>
 </Page>

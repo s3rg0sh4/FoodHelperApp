@@ -43,12 +43,14 @@ namespace FoodHelperApp
 			ArrowLeft.Visibility = Visibility.Collapsed;
 			SizeChanged += ResiseCheck;
 
+			MainFrame.Navigate(typeof(Auth));
 		}
 
 		public ObservableCollection<string> DisplayMealList
 		{
 			get { return this.displayMealList; }
 		}
+
 
 		void ResiseCheck(object sender, SizeChangedEventArgs e)
 		{

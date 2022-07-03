@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="#FFFFFF" MinWidth="900" MinHeight="600">
 
-    <Frame>
+    <Frame Name="MainFrame">
         <Frame.Resources>
             <Style x:Key="WhiteBlock" TargetType="Grid">
                 <Setter Property="Background" Value="#FFFFFF"/>

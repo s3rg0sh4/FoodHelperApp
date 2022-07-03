@@ -1,5 +1,5 @@
 ﻿<Page
-    x:Class="FoodHelperApp.AddIngrediant"
+    x:Class="FoodHelperApp.AddIngredient"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:FoodHelperApp"
@@ -64,12 +64,12 @@
            
         </Grid>
         <Grid Grid.Row="3">
-            <Button x:Name="AddIngredient" 
-                    Content="Добавить" 
+            <Button Content="Добавить" 
                     HorizontalAlignment="Center" 
                     Margin="0,12,0,0" 
                     VerticalAlignment="Top"
-                    Width="250"/>
+                    Width="250"
+                    Click="AddIngredientButton_Click"/>
         </Grid>
     </Grid>
 </Page>

@@ -48,7 +48,7 @@
             <TextBlock Text="Cколько калорий вы сожгли" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
         </Grid>
         <Grid Grid.Row="2">
-            <TextBox Grid.Row="0" x:Name="AddBurned" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
+            <TextBox Grid.Row="0" x:Name="BurnedText" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
         </Grid>
         <Grid Grid.Row="3">
             <Button x:Name="AddBurnedButton" 

@@ -20,11 +20,16 @@ namespace FoodHelperApp
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class AddIngrediant : Page
+    public sealed partial class AddIngredient : Page
     {
-        public AddIngrediant()
+        public AddIngredient()
         {
             this.InitializeComponent();
         }
-    }
+
+		private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }
