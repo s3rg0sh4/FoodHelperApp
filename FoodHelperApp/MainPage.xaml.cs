@@ -26,14 +26,13 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		const string login = "s3rg0sh4<3Athenaja";
-		const string password = "qwerty";
 		private List<string> mealList = new List<string>();
 		private ObservableCollection<string> displayMealList = new ObservableCollection<string>();
 		int pageIndex = -1;
 		bool isLastPage = false;
 		bool isFirstPage = false;
 		const int pageSize = 5;
+		bool isAuthorised = false;
 
 		public MainPage()
 		{
@@ -43,7 +42,12 @@ namespace FoodHelperApp
 			ArrowLeft.Visibility = Visibility.Collapsed;
 			SizeChanged += ResiseCheck;
 
-			MainFrame.Navigate(typeof(Auth));
+			if (!isAuthorised)
+			{
+				isAuthorised = true;
+				//MainFrame.Navigate(typeof(Auth));
+			}
+
 		}
 
 		public ObservableCollection<string> DisplayMealList

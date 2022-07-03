@@ -44,16 +44,15 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button x:Name="CloseRegister" 
-                    Width="100" Height="100" 
-                    Click="CloseRegister_Click" 
+            <Button Width="100" Height="100" 
                     VerticalAlignment="Top" 
-                    HorizontalAlignment="Right" 
+                    HorizontalAlignment="Right"
                     Background="#00FFFFFF" 
                     Foreground="#323232"
                     FontFamily="Marlett"
                     FontSize="50"
-                    Content="r"/>
+                    Content="r"
+                    Click="CloseRegister_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">
@@ -66,8 +65,8 @@
             <PasswordBox x:Name="RepeatPassword" VerticalAlignment="Bottom" PlaceholderText="Повторите пароль"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Button x:Name="Registrate" 
-                    Content="Зарегистрироваться" 
+            <CheckBox Name="Remember" Content="Запомнить?" HorizontalAlignment="Center"/>
+            <Button Content="Зарегистрироваться" 
                     HorizontalAlignment="Center" 
                     Click="Registrate_Click"
                     Margin="0,26,0,0" 

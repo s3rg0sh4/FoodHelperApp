@@ -6,8 +6,6 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Height="1024"
-    Width="1440"
     Background="#FFFFFF">
 
     <Page.Resources>
@@ -35,20 +33,20 @@
     </Page.Resources>
     <Grid>
         <TextBlock 
-            Text="Приложение выполнено студентами Московского Политихнического университета в рамках курсового проекта&#10;Группа 191-361&#10;Ларичев Сергей&#10;Базавлюк Ольга"
+            Text="Приложение выполнено студентами &#10;Московского Политихнического университета &#10;в рамках курсового проекта&#10;Группа 191-361&#10;Ларичев Сергей&#10;Базавлюк Ольга"
             FontSize="14"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             TextAlignment="Right"
             Margin="5"/>
-        <Grid Height="351" Width="512">
+        <Grid Height="360" Width="512">
             <Grid.RowDefinitions>
-                <RowDefinition Height="129"/>
+                <RowDefinition Height="120"/>
+                <RowDefinition Height="180"/>
                 <RowDefinition Height="*"/>
-                <RowDefinition Height="100"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row ="0">
-                <TextBlock Text="Помощник диетолога" 
+                <TextBlock Text="Помощник диетолога" Name="aboba"
                        FontFamily="Inter" 
                        FontSize="48" 
                        HorizontalAlignment="Center"/>
@@ -56,7 +54,7 @@
                        FontFamily="Inter"
                        FontSize="32"
                        HorizontalAlignment="Center" 
-                       Margin="0,0,0,26"
+                       Margin="0,0,0,12"
                        VerticalAlignment="Bottom"/>
             </Grid>
             <Grid Grid.Row="1">
@@ -65,17 +63,14 @@
                      Width="350" 
                      PlaceholderText="Логин" />
                 <PasswordBox x:Name="Password" 
-                     VerticalAlignment="Bottom" 
+                     VerticalAlignment="Center" 
                      Width="350" 
                      PlaceholderText="Пароль" />
-            </Grid>
-            <Grid Grid.Row="2">
-                <Button x:Name="Authorisate" 
+                <Button 
                     Content="Авторизоваться" 
                     HorizontalAlignment="Center"
                     Click="Auth_Click"
-                    Margin="0, 26, 0, 0"
-                    VerticalAlignment="Top"
+                    VerticalAlignment="Bottom"
                     FontFamily="Inter"
                     FontSize="20"
                     Foreground="#323232" 
@@ -83,8 +78,18 @@
                     Height="48"
                     Width="197" 
                     CornerRadius="30,30,30,30"/>
-                <Button x:Name="Register" 
-                    Content="Нет аккаунта?" 
+            </Grid>
+            <Grid Grid.Row="2">
+                <CheckBox Name="Remember" 
+                          Content="Запомнить?" 
+                          VerticalContentAlignment="Center"
+                          FontFamily="Inter"
+                          FontSize="10"
+                          Width="11"
+                          HorizontalAlignment="Center"
+                          VerticalAlignment="Top"
+                          Padding="5" Margin="32,25,0,0"/>
+                <Button Content="Нет аккаунта?" 
                     HorizontalAlignment="Center"
                     Click="Register_Click" 
                     VerticalAlignment="Top" 
@@ -93,8 +98,7 @@
                     Foreground="#323232" 
                     Background="#00ffffff" 
                     Height="25" 
-                    Width="108" 
-                    Margin="0,75,0,0"/>
+                    Width="108"/>
             </Grid>
         </Grid>
     </Grid>

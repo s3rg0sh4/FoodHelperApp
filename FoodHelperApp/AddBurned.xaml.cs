@@ -26,5 +26,10 @@ namespace FoodHelperApp
         {
             this.InitializeComponent();
         }
-    }
+
+		private void AddBurned_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+	}
 }

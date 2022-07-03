@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using FoodHelperLibrary;
 
 // Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -23,8 +24,6 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class Auth : Page
 	{
-		private string login;
-		private string password;
 		public Auth()
 		{
 
@@ -32,16 +31,24 @@ namespace FoodHelperApp
 		}
 
         private void Auth_Click(object sender, RoutedEventArgs e)
-        {
-			login = Login.Text;
-			password = Password.Password;
+		{
+			bool remember = Remember.IsChecked != null && Remember.IsChecked != false;
 
-
+			if (FoodHelperDB.CheckUser(Login.Text, Password.Password)) 
+			{
+				FoodHelperDB.UpdateUserRemember(Login.Text, remember);
+				Frame.Navigate(typeof(MainPage)); 
+			}
+			else
+			{
+				Login.Text = "";
+				Password.Password = "";
+			}
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
         {
-
+			Frame.Navigate(typeof(Register));
         }
     }
 }

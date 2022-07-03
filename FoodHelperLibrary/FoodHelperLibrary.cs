@@ -52,8 +52,8 @@ namespace FoodHelperLibrary
                     "Users (" +
                     "userID INTEGER PRIMARY KEY NOT NULL, " +
                     "login CHARACTER(20) NOT NULL UNIQUE, " +
-                    "password CHARACTER(20) NOT NULL" +
-					"" +
+                    "password CHARACTER(20) NOT NULL, " +
+					"remember BOOLEAN NOT NULL " +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users_Recepies (" +
@@ -80,21 +80,22 @@ namespace FoodHelperLibrary
                     "FROM Ingredients_Recipies ir " +
 					"JOIN Ingredients i USING(ingredientID) " +
                     "JOIN Recipies r USING(recipeID) " +
-                    "GROUP BY recipeID ",
-                    connection).ExecuteReader();
+                    "GROUP BY recipeID; ",
+                    connection).ExecuteNonQuery();
             }
         }
 
-        public static void AddUser(string login, string password)
+        public static void AddUser(string login, string password, bool remember)
 		{
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO Users(login, password) VALUES(@login,@password)";
+                command.CommandText = "INSERT INTO Users(login, password, remember) VALUES(@login,@password,@remember); ";
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
+                command.Parameters.AddWithValue("@remember", remember);
                 command.ExecuteNonQuery();
 			}
 		}
@@ -113,6 +114,49 @@ namespace FoodHelperLibrary
                 return command.ExecuteReader().HasRows;
             }
 		}
+
+        public static bool GetUserRemember(string login)
+		{
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+			{
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT remember FROM Users " +
+                    "WHERE login LIKE @login; ";
+                command.Parameters.AddWithValue("@login", login);
+                SqliteDataReader result = command.ExecuteReader();
+				return result.Read() && bool.Parse(result["remember"].ToString());
+			}
+		}
+
+        public static void UpdateUserRemember(string login, bool remember)
+		{
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+			{
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = connection;
+                command.CommandText = "UPDATE Users SET remember=@remember WHERE login LIKE @login";
+                command.Parameters.AddWithValue("@login", login);
+                command.Parameters.AddWithValue("@remember", remember);
+                command.ExecuteNonQuery();
+            }
+		}
+
+        public static bool CheckUserLogin(string login)
+		{
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.Connection = connection;
+                command.CommandText = "SELECT * FROM Users " +
+                    "WHERE login LIKE @login; ";
+                command.Parameters.AddWithValue("@login", login);
+                return command.ExecuteReader().HasRows;
+            }
+        }
 
         public static int GetUserID(string login)
         {
@@ -160,7 +204,7 @@ namespace FoodHelperLibrary
             {
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "UPDATE Burned AS b SET calories = calories + @burnedCal " +
+                command.CommandText = "UPDATE Burned SET calories = calories + @burnedCal " +
                     "WHERE userID = @userID AND `date`= '@date' ";
                 command.Parameters.AddWithValue("@burnedCal", burnedCal);
                 command.Parameters.AddWithValue("@userID", userID);

@@ -51,12 +51,12 @@
             <TextBox Grid.Row="0" x:Name="BurnedText" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
         </Grid>
         <Grid Grid.Row="3">
-            <Button x:Name="AddBurnedButton" 
-                    Content="Добавить" 
+            <Button Content="Добавить" 
                     HorizontalAlignment="Center" 
                     Margin="0,12,0,0" 
                     VerticalAlignment="Top"
-                    Width="250"/>
+                    Width="250"
+                    Click="AddBurned_Click"/>
         </Grid>
     </Grid>
 </Page>

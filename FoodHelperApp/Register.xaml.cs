@@ -28,14 +28,24 @@ namespace FoodHelperApp
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            bool userExists = false;
-            if (Password.Password == RepeatPassword.Password)
-                userExists = FoodHelperDB.CheckUser(Login.Text, Password.Password);
+            bool remember = Remember.IsChecked != null && Remember.IsChecked != false;
+            if (!FoodHelperDB.CheckUser(Login.Text, Password.Password))
+            {
+                FoodHelperDB.AddUser(Login.Text, Password.Password, remember);
+                Frame.Navigate(typeof(MainPage));
+            }
+            else
+                Frame.Navigate(typeof(Auth));
         }
 
         private void CloseRegister_Click(object sender, RoutedEventArgs e)
         {
 
         }
+
+		private void CheckBox_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
 	}
 }
