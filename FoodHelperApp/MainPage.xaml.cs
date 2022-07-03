@@ -43,7 +43,7 @@ namespace FoodHelperApp
 			SizeChanged += ResiseCheck;
 
 			if (!isAuthorised)
-			{
+			{   //Сделать адекватную навигацию между фреймами, а не вот это все
 				isAuthorised = true;
 				//MainFrame.Navigate(typeof(Auth));
 			}
