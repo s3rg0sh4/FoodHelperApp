@@ -32,13 +32,6 @@
                     Grid.Column="0"
                     Content="Выйти"
                     Click="Exit_Click"/>
-                <!--<TextBlock x:Name="LoginText"
-                       Grid.Column="1"
-                       Text="Login" 
-                       FontSize="40"
-                       HorizontalAlignment="Stretch" 
-                       Height="48" 
-                       TextAlignment="Center"/>-->
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
                     <Button x:Name="AddIngredientButton" 
                             Content="Добавить ингредиент +"
@@ -63,40 +56,11 @@
                     </Grid.RowDefinitions>
                     <Grid Style="{StaticResource GrayBlock}" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
-                            <RowDefinition Height="72"/>
+                            <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Button x:Name="AddAteToday"
-                            Grid.Row="0"
-                            Content="Сегодня съедено +"
-                            HorizontalAlignment="Stretch" 
-                            VerticalAlignment="Top"
-                            Click="AddAteToday_Click"/>
-                        <!--<TextBlock Text="Сегодня вы съели" 
-                               Margin="0,60,0,0" 
-                               HorizontalAlignment="Center"
-                               VerticalAlignment="Top"/>-->
-                        <ListView x:Name="AteTodayGridView" ItemsSource="{x:Bind DisplayMealList}" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"/>
-                        <!--<Button x:Name="ArrowLeft" 
-                                Grid.Column="0"
-                                HorizontalAlignment="Center" 
-                                Click="PreviousButton_Click" 
-                                Background="#EDEDED"
-                                FontFamily="Marlett"
-                                FontSize="25"
-                                Content="3"
-                                CornerRadius="0,0,0,0"
-                                Foreground="#7F808080"/>
-                            <Button x:Name="ArrowRight"
-                                Grid.Column="2"
-                                HorizontalAlignment="Center"
-                                Click="NextButton_Click"
-                                Background="#EDEDED"
-                                FontFamily="Marlett"
-                                FontSize="25"
-                                Content="4"
-                                CornerRadius="0,0,0,0"
-                                Foreground="#7F808080"/>-->
+                        <Button Grid.Row="0" Content="Сегодня съедено" HorizontalAlignment="Stretch" Click="AddAteToday_Click"/>
+                        <ListView x:Name="AteTodayGridView" Grid.Row="1" ItemsSource="{x:Bind DisplayMealList}"/>
                     </Grid>
                     <Grid Style="{StaticResource GrayBlock}" Grid.Row="1">
                         <Button Content="Сегодня сожжено +" VerticalAlignment="Top" Click="AddBurnedToday_Click" HorizontalAlignment="Stretch"/>
@@ -106,7 +70,6 @@
                                 <RowDefinition Height="*"/>
                                 <RowDefinition Height="48"/>
                             </Grid.RowDefinitions>
-                            <!--<TextBlock Text="Сегодня вы сожгли" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
                             <Image x:Name="BurnedIMG" Style="{StaticResource Burned}" Grid.Row="1"/>
                             <TextBlock x:Name="BurnedToday" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         </Grid>

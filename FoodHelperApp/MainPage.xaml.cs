@@ -27,11 +27,6 @@ namespace FoodHelperApp
 	public sealed partial class MainPage : Page
 	{
 		private ObservableCollection<string> displayMealList;
-		//private List<string> mealList = new List<string>();
-		//int pageIndex = -1;
-		//bool isLastPage = false;
-		//bool isFirstPage = false;
-		//const int pageSize = 5;
 
 		public MainPage()
 		{
@@ -39,7 +34,7 @@ namespace FoodHelperApp
 			//ArrowLeft.Visibility = Visibility.Collapsed;
 			this.InitializeComponent();
 			displayMealList = new ObservableCollection<string>();
-
+			//ивент при нажатии любой из кнопок обновляет данные в блоках
 
 			SizeChanged += ResiseCheck;
 		}
@@ -98,33 +93,8 @@ namespace FoodHelperApp
 
 		private void AddRecipe_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddRecipe));
 
-		private void AddBurnedToday_Click(object sender, RoutedEventArgs e)
-		{
+		private void AddBurnedToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddBurned));
 
-		}
-
-		private void AddAteToday_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
-
-
-		//private void NextButton_Click(object sender, RoutedEventArgs e)
-		//{
-		//	pageIndex++;
-		//	int pageCount = mealList.Count / pageSize;
-		//	isFirstPage = pageIndex == 0;
-		//	displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-		//	ArrowRight.Visibility = isLastPage ? Visibility.Collapsed : Visibility.Visible;
-		//}
-
-		//private void PreviousButton_Click(object sender, RoutedEventArgs e)
-		//{
-		//	pageIndex--;
-		//	int pageCount = mealList.Count / pageSize;
-		//	isLastPage = pageCount == pageIndex;
-		//	displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-		//	ArrowLeft.Visibility = isFirstPage ? Visibility.Collapsed : Visibility.Visible;
-		//}
+		private void AddAteToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddMeal));
 	}
 }
