@@ -26,23 +26,22 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		private List<string> mealList = new List<string>();
-		private ObservableCollection<string> displayMealList = new ObservableCollection<string>();
-		int pageIndex = -1;
-		bool isLastPage = false;
-		bool isFirstPage = false;
-		const int pageSize = 5;
+		private ObservableCollection<string> displayMealList;
+		//private List<string> mealList = new List<string>();
+		//int pageIndex = -1;
+		//bool isLastPage = false;
+		//bool isFirstPage = false;
+		//const int pageSize = 5;
 
 		public MainPage()
 		{
+			//NextButton_Click(null, null);
+			//ArrowLeft.Visibility = Visibility.Collapsed;
 			this.InitializeComponent();
-			mealList = new List<string>() { "Aboba1", "Aboba2", "Aboba3", "Aboba4", "Aboba5", "Aboba6", "Aboba7", "Aboba8", "Aboba9", "Aboba0" };
-			NextButton_Click(null, null);
-			ArrowLeft.Visibility = Visibility.Collapsed;
+			displayMealList = new ObservableCollection<string>();
+
+
 			SizeChanged += ResiseCheck;
-
-
-
 		}
 
 		public ObservableCollection<string> DisplayMealList
@@ -110,22 +109,22 @@ namespace FoodHelperApp
 		}
 
 
-		private void NextButton_Click(object sender, RoutedEventArgs e)
-		{
-			pageIndex++;
-			int pageCount = mealList.Count / pageSize;
-			isFirstPage = pageIndex == 0;
-			displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-			ArrowRight.Visibility = isLastPage ? Visibility.Collapsed : Visibility.Visible;
-		}
+		//private void NextButton_Click(object sender, RoutedEventArgs e)
+		//{
+		//	pageIndex++;
+		//	int pageCount = mealList.Count / pageSize;
+		//	isFirstPage = pageIndex == 0;
+		//	displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
+		//	ArrowRight.Visibility = isLastPage ? Visibility.Collapsed : Visibility.Visible;
+		//}
 
-		private void PreviousButton_Click(object sender, RoutedEventArgs e)
-		{
-			pageIndex--;
-			int pageCount = mealList.Count / pageSize;
-			isLastPage = pageCount == pageIndex;
-			displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
-			ArrowLeft.Visibility = isFirstPage ? Visibility.Collapsed : Visibility.Visible;
-		}
+		//private void PreviousButton_Click(object sender, RoutedEventArgs e)
+		//{
+		//	pageIndex--;
+		//	int pageCount = mealList.Count / pageSize;
+		//	isLastPage = pageCount == pageIndex;
+		//	displayMealList = new ObservableCollection<string>(mealList.Skip(pageIndex * pageSize).Take(pageSize).ToList());
+		//	ArrowLeft.Visibility = isFirstPage ? Visibility.Collapsed : Visibility.Visible;
+		//}
 	}
 }

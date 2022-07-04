@@ -22,8 +22,7 @@ namespace FoodHelperLibrary
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
                 connection.Open();
-
-                new SqliteCommand(
+                SqliteCommand createIngredientsTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Ingredients (" +
                     "ingredientID INTEGER PRIMARY KEY NOT NULL, " +
@@ -32,13 +31,17 @@ namespace FoodHelperLibrary
                     "proteins DOUBLE NOT NULL, " +
                     "fats DOUBLE NOT NULL, " +
                     "carbs DOUBLE NOT NULL" +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createRecipiesTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Recipies (" +
                     "recipeID INTEGER PRIMARY KEY NOT NULL, " +
                     "recipeName CHARACTER(50) NOT NULL, " +
                     "weight DOUBLE NOT NULL" +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createIngredientsRecipiesTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Ingredients_Recipies (" +
                     "ingredientID INTEGER NOT NULL, " +
@@ -47,15 +50,19 @@ namespace FoodHelperLibrary
                     "CONSTRAINT FKingredientID FOREIGN KEY (ingredientID) REFERENCES Ingredients(ingredientID), " +
                     "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
                     "CONSTRAINT IngredientsRecipesPK PRIMARY KEY (ingredientID, recipeID)" +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createUsersTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users (" +
                     "userID INTEGER PRIMARY KEY NOT NULL, " +
                     "login CHARACTER(20) NOT NULL UNIQUE, " +
                     "password CHARACTER(20) NOT NULL " +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createUsersRecipiesTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
-                    "Users_Recepies (" +
+                    "Users_Recipies (" +
                     "userID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
                     "date DATE NOT NULL, " +
@@ -63,7 +70,9 @@ namespace FoodHelperLibrary
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID), " +
                     "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
                     "CONSTRAINT UsersRecepiesPK PRIMARY KEY (userID, recipeID, date)" +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createBurnedTable = new SqliteCommand(
                     "CREATE TABLE IF NOT EXISTS " +
                     "Burned (" +
                     "burnedID INTEGER PRIMARY KEY NOT NULL, " +
@@ -71,7 +80,9 @@ namespace FoodHelperLibrary
                     "date DATE, " +
                     "userID INTEGER NOT NULL, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID)" +
-                    ");" +
+                    ");", connection);
+
+                SqliteCommand createRecipeStatView = new SqliteCommand(
                     "CREATE VIEW IF NOT EXISTS RecipeStat AS " +
                     "SELECT recipeID, recipeName, SUM(calories * ir.weight / 100) AS calories, " +
                     "SUM(proteins * ir.weight / 100) AS proteins, " +
@@ -79,8 +90,15 @@ namespace FoodHelperLibrary
                     "FROM Ingredients_Recipies ir " +
 					"JOIN Ingredients i USING(ingredientID) " +
                     "JOIN Recipies r USING(recipeID) " +
-                    "GROUP BY recipeID; ",
-                    connection).ExecuteNonQuery();
+                    "GROUP BY recipeID;", connection);
+
+                createIngredientsTable.ExecuteNonQuery();
+                createRecipiesTable.ExecuteNonQuery();
+                createIngredientsRecipiesTable.ExecuteNonQuery();
+                createUsersTable.ExecuteNonQuery();
+                createUsersRecipiesTable.ExecuteNonQuery();
+                createBurnedTable.ExecuteNonQuery();
+                createRecipeStatView.ExecuteNonQuery();
             }
         }
 
@@ -207,6 +225,27 @@ namespace FoodHelperLibrary
                             double.Parse(result["fat"].ToString()),
                             double.Parse(result["carb"].ToString())));
                     }
+                else return null;
+                return stats;
+            }
+        }
+
+        public static List<string> GetUserAte(int userID, int days)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                var stats = new List<string>();
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT recipeName " +
+					"FROM Users_Recepies ur " +
+                    "JOIN Recepies r USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND 'now'";
+                command.Parameters.AddWithValue("@userID", userID);
+                command.Parameters.AddWithValue("@days", days);
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows) while (result.Read()) stats.Add(result["recipeName"].ToString());
                 else return null;
                 return stats;
             }
