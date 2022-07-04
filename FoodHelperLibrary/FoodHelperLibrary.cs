@@ -52,8 +52,7 @@ namespace FoodHelperLibrary
                     "Users (" +
                     "userID INTEGER PRIMARY KEY NOT NULL, " +
                     "login CHARACTER(20) NOT NULL UNIQUE, " +
-                    "password CHARACTER(20) NOT NULL, " +
-					"remember BOOLEAN NOT NULL " +
+                    "password CHARACTER(20) NOT NULL " +
                     ");" +
                     "CREATE TABLE IF NOT EXISTS " +
                     "Users_Recepies (" +
@@ -85,17 +84,16 @@ namespace FoodHelperLibrary
             }
         }
 
-        public static void AddUser(string login, string password, bool remember)
+        public static void AddUser(string login, string password)
 		{
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
 			{
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
                 command.Connection = connection;
-                command.CommandText = "INSERT INTO Users(login, password, remember) VALUES(@login,@password,@remember); ";
+                command.CommandText = "INSERT INTO Users(login, password) VALUES(@login,@password); ";
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
-                command.Parameters.AddWithValue("@remember", remember);
                 command.ExecuteNonQuery();
 			}
 		}
@@ -112,35 +110,6 @@ namespace FoodHelperLibrary
                 command.Parameters.AddWithValue("@login", login);
                 command.Parameters.AddWithValue("@password", password);
                 return command.ExecuteReader().HasRows;
-            }
-		}
-
-        public static bool GetUserRemember(string login)
-		{
-            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
-			{
-                connection.Open();
-                SqliteCommand command = new SqliteCommand();
-                command.Connection = connection;
-                command.CommandText = "SELECT remember FROM Users " +
-                    "WHERE login LIKE @login; ";
-                command.Parameters.AddWithValue("@login", login);
-                SqliteDataReader result = command.ExecuteReader();
-				return result.Read() && bool.Parse(result["remember"].ToString());
-			}
-		}
-
-        public static void UpdateUserRemember(string login, bool remember)
-		{
-            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
-			{
-                connection.Open();
-                SqliteCommand command = new SqliteCommand();
-                command.Connection = connection;
-                command.CommandText = "UPDATE Users SET remember=@remember WHERE login LIKE @login";
-                command.Parameters.AddWithValue("@login", login);
-                command.Parameters.AddWithValue("@remember", remember);
-                command.ExecuteNonQuery();
             }
 		}
 

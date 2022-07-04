@@ -39,34 +39,27 @@
             VerticalAlignment="Bottom"
             TextAlignment="Right"
             Margin="5"/>
-        <Grid Height="360" Width="512">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="120"/>
-                <RowDefinition Height="180"/>
-                <RowDefinition Height="*"/>
-            </Grid.RowDefinitions>
-            <Grid Grid.Row ="0">
-                <TextBlock Text="Помощник диетолога" Name="aboba"
+        <StackPanel Height="370" Width="512">
+            <TextBlock Text="Помощник диетолога"
                        FontFamily="Inter" 
                        FontSize="48" 
+                       Margin="0,6"
                        HorizontalAlignment="Center"/>
-                <TextBlock Text="Авторизация"
+            <TextBlock Text="Авторизация"
                        FontFamily="Inter"
                        FontSize="32"
                        HorizontalAlignment="Center" 
-                       Margin="0,0,0,12"
-                       VerticalAlignment="Bottom"/>
-            </Grid>
-            <Grid Grid.Row="1">
-                <TextBox x:Name="Login" 
-                     VerticalAlignment="Top" 
+                       Margin="0,6"/>
+            <TextBox x:Name="Login" 
+                       Margin="0,6"
                      Width="350" 
                      PlaceholderText="Логин" />
                 <PasswordBox x:Name="Password" 
                      VerticalAlignment="Center" 
                      Width="350" 
+                       Margin="0,6"
                      PlaceholderText="Пароль" />
-                <Button 
+            <Button 
                     Content="Авторизоваться" 
                     HorizontalAlignment="Center"
                     Click="Auth_Click"
@@ -75,12 +68,10 @@
                     FontSize="20"
                     Foreground="#323232" 
                     Background="#7DC3FD" 
-                    Height="48"
+                       Margin="0,6"
                     Width="197" 
                     CornerRadius="30,30,30,30"/>
-            </Grid>
-            <Grid Grid.Row="2">
-                <CheckBox Name="Remember" 
+            <CheckBox Name="Remember" 
                           Content="Запомнить?" 
                           VerticalContentAlignment="Center"
                           FontFamily="Inter"
@@ -88,8 +79,8 @@
                           Width="11"
                           HorizontalAlignment="Center"
                           VerticalAlignment="Top"
-                          Padding="5" Margin="32,25,0,0"/>
-                <Button Content="Нет аккаунта?" 
+                          Padding="5" Margin="32,6,0,0"/>
+            <Button Content="Нет аккаунта?" 
                     HorizontalAlignment="Center"
                     Click="Register_Click" 
                     VerticalAlignment="Top" 
@@ -97,9 +88,9 @@
                     FontSize="10"
                     Foreground="#323232" 
                     Background="#00ffffff" 
+                       Margin="0,6"
                     Height="25" 
                     Width="108"/>
-            </Grid>
-        </Grid>
+        </StackPanel>
     </Grid>
 </Page>

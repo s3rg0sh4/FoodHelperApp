@@ -28,20 +28,16 @@ namespace FoodHelperApp
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            bool remember = Remember.IsChecked != null && Remember.IsChecked != false;
             if (!FoodHelperDB.CheckUser(Login.Text, Password.Password))
             {
-                FoodHelperDB.AddUser(Login.Text, Password.Password, remember);
+                FoodHelperDB.AddUser(Login.Text, Password.Password);
                 Frame.Navigate(typeof(MainPage));
             }
             else
-                Frame.Navigate(typeof(Auth));
+                Frame.GoBack(); //Если юзер существует, доделать
         }
 
-        private void CloseRegister_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+		private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();
 
 		private void CheckBox_Click(object sender, RoutedEventArgs e)
 		{

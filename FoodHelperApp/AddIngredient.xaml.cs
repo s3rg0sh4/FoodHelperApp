@@ -31,5 +31,7 @@ namespace FoodHelperApp
 		{
 
 		}
-	}
+
+        private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();
+    }
 }

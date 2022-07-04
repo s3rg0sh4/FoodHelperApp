@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Background="#FFFFFF" MinWidth="900" MinHeight="600">
 
-    <Frame Name="MainFrame">
+    <Frame>
         <Frame.Resources>
             <Style x:Key="WhiteBlock" TargetType="Grid">
                 <Setter Property="Background" Value="#FFFFFF"/>
@@ -22,18 +22,16 @@
                 <Setter Property="Padding" Value="20"/>
             </Style>
         </Frame.Resources>
-        <Grid x:Name="MainGrid" Background="White" Margin="50">
+        <Grid x:Name="MainGrid" Background="White" Margin="50" RowSpacing="24">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48"/>
-                <RowDefinition MinHeight="10" MaxHeight="83"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Button x:Name="ExitButton"
-                    Width="144"
+                <Button Width="144"
                     Grid.Column="0"
                     Content="Выйти"
-                    Click="ExitButton_Click"/>
+                    Click="Exit_Click"/>
                 <!--<TextBlock x:Name="LoginText"
                        Grid.Column="1"
                        Text="Login" 
@@ -41,30 +39,27 @@
                        HorizontalAlignment="Stretch" 
                        Height="48" 
                        TextAlignment="Center"/>-->
-                <Button x:Name="AddIngredientButton" 
-                    HorizontalAlignment="Right"
-                    Content="Добавить ингредиент +"
-                    Width="240" 
-                    Margin="0,0,250,0"
-                    Click="AddIngredientButton_Click"/>
-                <Button x:Name="AddRecipeButton"
-                    HorizontalAlignment="Right"
-                    Content="Добавить рецепт +"
-                    Width="240" 
-                    Click="AddRecipeButton_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
+                    <Button x:Name="AddIngredientButton" 
+                            Content="Добавить ингредиент +"
+                            Width="240"
+                            Click="AddIngredient_Click"/>
+                    <Button x:Name="AddRecipeButton"
+                            Content="Добавить рецепт +"
+                            Width="240" 
+                            Click="AddRecipe_Click"/>
+                    </StackPanel>
             </Grid>
 
-            <Grid x:Name="Blocks" Grid.Row="2" Height="Auto" VerticalAlignment="Stretch">
+            <Grid x:Name="Blocks" Grid.Row="1" ColumnSpacing="32">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="32"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                <Grid Grid.Column="0">
+                <Grid Grid.Column="0" RowSpacing="32">
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="467*"/>
-                        <RowDefinition Height="23*"/>
-                        <RowDefinition Height="467*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
                     </Grid.RowDefinitions>
                     <Grid Style="{StaticResource GrayBlock}" HorizontalAlignment="Stretch">
                         <Grid.RowDefinitions>
@@ -111,7 +106,7 @@
                                 Foreground="#7F808080"/>
                         </Grid>
                     </Grid>
-                    <Grid Style="{StaticResource GrayBlock}" Grid.Row="2">
+                    <Grid Style="{StaticResource GrayBlock}" Grid.Row="1">
                         <Button Content="Сегодня сожжено +" VerticalAlignment="Top" Click="AddBurnedToday_Click" HorizontalAlignment="Stretch"/>
                         <Grid>
                             <Grid.RowDefinitions>
@@ -125,7 +120,7 @@
                         </Grid>
                     </Grid>
                 </Grid>
-                <Grid Style="{StaticResource GrayBlock}" Grid.Column="2">
+                <Grid Style="{StaticResource GrayBlock}" Grid.Column="1">
                     <Grid.RowDefinitions>
                         <RowDefinition/>
                         <RowDefinition/>

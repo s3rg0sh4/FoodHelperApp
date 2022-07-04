@@ -24,16 +24,9 @@
         </Style>
     </Page.Resources>
 
-    <Grid Height="395" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="60"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <StackPanel Height="395" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67" Spacing="12">
 
-        <Grid Grid.Row="0">
-            <Button x:Name="CloseAddBurned" 
+        <Button x:Name="CloseAddBurned" 
                     Width="100" Height="100" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
@@ -42,21 +35,8 @@
                     FontFamily="Marlett"
                     FontSize="50"
                     Content="r"/>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <TextBlock Text="Cколько калорий вы сожгли" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <TextBox Grid.Row="0" x:Name="BurnedText" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
-        </Grid>
-        <Grid Grid.Row="3">
-            <Button Content="Добавить" 
-                    HorizontalAlignment="Center" 
-                    Margin="0,12,0,0" 
-                    VerticalAlignment="Top"
-                    Width="250"
-                    Click="AddBurned_Click"/>
-        </Grid>
-    </Grid>
+        <TextBlock Text="Cколько калорий вы сожгли" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" Width="500"/>
+        <TextBox Grid.Row="0" x:Name="BurnedText" PlaceholderText="Количество калорий"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Width="250" Click="AddBurned_Click"/>
+    </StackPanel>
 </Page>

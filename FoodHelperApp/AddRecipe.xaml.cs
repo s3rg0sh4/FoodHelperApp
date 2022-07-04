@@ -13,18 +13,29 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
-
 namespace FoodHelperApp
 {
     /// <summary>
     /// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
     /// </summary>
-    public sealed partial class RecipeAdd : Page
+    public sealed partial class AddRecipe : Page
     {
-        public RecipeAdd()
+        public AddRecipe()
         {
             this.InitializeComponent();
         }
-    }
+
+		private void AddRecipe_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
+		private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();
+
+        private void AddIngredient_Click(object sender, RoutedEventArgs e)
+        {
+
+
+		}
+	}
 }

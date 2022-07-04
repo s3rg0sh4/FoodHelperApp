@@ -24,52 +24,26 @@
         </Style>
     </Page.Resources>
 
-    <Grid Height="744" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="120"/>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="360"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Button x:Name="CloseAddIngredient" 
-                    Width="100" Height="100" 
+    <StackPanel Height="744" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67" Spacing="12">
+        <Button     Width="100" Height="100" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
                     Background="#00FFFFFF" 
                     Foreground="#323232"
                     FontFamily="Marlett"
                     FontSize="50"
-                    Content="r"/>
-        </Grid>
+                    Content="r"
+                    Click="Close_Click"/>
 
-        <Grid Grid.Row="1">
-            <TextBlock Text="Пожалуйста, указывайте параметры на 100 грамм" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            
-            <TextBox Grid.Row="0" x:Name="NameIngFyeld" VerticalAlignment="Center" PlaceholderText="Наименование"/>
-            <TextBox Grid.Row="1" x:Name="CountCal" VerticalAlignment="Center" PlaceholderText="Количество калорий"/>
-            <TextBox Grid.Row="2" x:Name="CountProtein" VerticalAlignment="Center" PlaceholderText="Количество белков"/>
-            <TextBox Grid.Row="3" x:Name="CountrFat" VerticalAlignment="Center" PlaceholderText="Количество жиров"/>
-            <TextBox Grid.Row="4" x:Name="CountCarb" VerticalAlignment="Center" PlaceholderText="Количесвто углеводов"/>
-           
-        </Grid>
-        <Grid Grid.Row="3">
-            <Button Content="Добавить" 
-                    HorizontalAlignment="Center" 
-                    Margin="0,12,0,0" 
-                    VerticalAlignment="Top"
-                    Width="250"
-                    Click="AddIngredientButton_Click"/>
-        </Grid>
-    </Grid>
+        <TextBlock Text="Пожалуйста, указывайте параметры на 100 грамм" TextWrapping="Wrap" FontSize="28"
+                 HorizontalAlignment="Center" TextAlignment="Center" Width="500"/>
+
+
+        <TextBox x:Name="NameIngFyeld" PlaceholderText="Наименование"/>
+        <TextBox x:Name="CountCal" PlaceholderText="Количество калорий"/>
+        <TextBox x:Name="CountProtein" PlaceholderText="Количество белков"/>
+        <TextBox x:Name="CountrFat" PlaceholderText="Количество жиров"/>
+        <TextBox x:Name="CountCarb" PlaceholderText="Количесвто углеводов"/>
+        <Button Content="Добавить" HorizontalAlignment="Center" Width="250" Click="AddIngredientButton_Click"/>
+    </StackPanel>
 </Page>

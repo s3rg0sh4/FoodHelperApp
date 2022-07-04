@@ -34,8 +34,7 @@
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
-            <Button x:Name="CloseAddMeal" 
-                    Width="100" Height="100" 
+            <Button Width="100" Height="100" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
                     Background="#00FFFFFF" 

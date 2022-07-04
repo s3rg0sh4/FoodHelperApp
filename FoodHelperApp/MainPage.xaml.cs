@@ -32,7 +32,6 @@ namespace FoodHelperApp
 		bool isLastPage = false;
 		bool isFirstPage = false;
 		const int pageSize = 5;
-		bool isAuthorised = false;
 
 		public MainPage()
 		{
@@ -42,11 +41,7 @@ namespace FoodHelperApp
 			ArrowLeft.Visibility = Visibility.Collapsed;
 			SizeChanged += ResiseCheck;
 
-			if (!isAuthorised)
-			{   //Сделать адекватную навигацию между фреймами, а не вот это все
-				isAuthorised = true;
-				//MainFrame.Navigate(typeof(Auth));
-			}
+
 
 		}
 
@@ -56,7 +51,7 @@ namespace FoodHelperApp
 		}
 
 
-		void ResiseCheck(object sender, SizeChangedEventArgs e)
+		private void ResiseCheck(object sender, SizeChangedEventArgs e)
 		{
 			if (e.NewSize.Height < 720)
 			{
@@ -92,17 +87,17 @@ namespace FoodHelperApp
 			}
 		}
 
-		private void ExitButton_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
-
-		private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
+		private void Exit_Click(object sender, RoutedEventArgs e)
 		{
-
+			if (Frame.CanGoBack)
+				Frame.GoBack();
+			else
+				Application.Current.Exit();
 		}
 
-		private void AddRecipeButton_Click(object sender, RoutedEventArgs e)
-		{
+		private void AddIngredient_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddIngredient));
 
-		}
+		private void AddRecipe_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddRecipe));
 
 		private void AddBurnedToday_Click(object sender, RoutedEventArgs e)
 		{

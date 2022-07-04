@@ -52,7 +52,7 @@
                     FontFamily="Marlett"
                     FontSize="50"
                     Content="r"
-                    Click="CloseRegister_Click"/>
+                    Click="Close_Click"/>
         </Grid>
 
         <Grid Grid.Row="1">

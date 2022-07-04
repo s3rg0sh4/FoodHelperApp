@@ -24,19 +24,17 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class Auth : Page
 	{
+
+		//Сделать запоминание через файл ApplicationData.Current.LocalFolder.Path
 		public Auth()
 		{
-
 			this.InitializeComponent();
 		}
 
         private void Auth_Click(object sender, RoutedEventArgs e)
 		{
-			bool remember = Remember.IsChecked != null && Remember.IsChecked != false;
-
 			if (FoodHelperDB.CheckUser(Login.Text, Password.Password)) 
 			{
-				FoodHelperDB.UpdateUserRemember(Login.Text, remember);
 				Frame.Navigate(typeof(MainPage)); 
 			}
 			else
