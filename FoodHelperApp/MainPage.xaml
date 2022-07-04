@@ -12,37 +12,23 @@
         <Frame.Resources>
             <Style x:Key="WhiteBlock" TargetType="Grid">
                 <Setter Property="Background" Value="#FFFFFF"/>
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Stretch" />
                 <Setter Property="CornerRadius" Value="30,30,30,30"/>
                 <Setter Property="Padding" Value="20"/>
                 <Setter Property="Margin" Value="12"/>
             </Style>
             <Style x:Key="GrayBlock" TargetType="Grid">
                 <Setter Property="Background" Value="#EDEDED"/>
-                <Setter Property="HorizontalAlignment" Value="Stretch"/>
-                <Setter Property="VerticalAlignment" Value="Stretch" />
                 <Setter Property="CornerRadius" Value="30,30,30,30"/>
                 <Setter Property="Padding" Value="20"/>
             </Style>
         </Frame.Resources>
-        <Grid 
-        x:Name="MainGrid"
-        Background="White"
-        Margin="50"
-        HorizontalAlignment="Stretch"
-        VerticalAlignment="Stretch">
+        <Grid x:Name="MainGrid" Background="White" Margin="50">
             <Grid.RowDefinitions>
                 <RowDefinition Height="48"/>
                 <RowDefinition MinHeight="10" MaxHeight="83"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" MinWidth="144"/>
-                    <ColumnDefinition Width="3*" MinWidth="422"/>
-                </Grid.ColumnDefinitions>
-
                 <Button x:Name="ExitButton"
                     Width="144"
                     Grid.Column="0"
@@ -56,14 +42,12 @@
                        Height="48" 
                        TextAlignment="Center"/>-->
                 <Button x:Name="AddIngredientButton" 
-                    Grid.Column="2"
                     HorizontalAlignment="Right"
                     Content="Добавить ингредиент +"
                     Width="240" 
                     Margin="0,0,250,0"
                     Click="AddIngredientButton_Click"/>
                 <Button x:Name="AddRecipeButton"
-                    Grid.Column="2" 
                     HorizontalAlignment="Right"
                     Content="Добавить рецепт +"
                     Width="240" 
@@ -128,13 +112,7 @@
                         </Grid>
                     </Grid>
                     <Grid Style="{StaticResource GrayBlock}" Grid.Row="2">
-                        <Button x:Name="AddBurnedToday"
-                            Content="Сегодня сожжено +"
-
-                            HorizontalAlignment="Stretch"
-                            VerticalAlignment="Top"
-                            Click="AddBurnedToday_Click"/>
-
+                        <Button Content="Сегодня сожжено +" VerticalAlignment="Top" Click="AddBurnedToday_Click" HorizontalAlignment="Stretch"/>
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="72"/>
