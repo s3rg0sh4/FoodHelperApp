@@ -8,19 +8,6 @@
     mc:Ignorable="d"
     Background="White">
     <Page.Resources>
-        <Style TargetType="TextBlock">
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="FontSize" Value="40"/>
-            <Setter Property="Foreground" Value="#323232"/>
-        </Style>
-        <Style TargetType="Button">
-            <Setter Property="Foreground" Value="#323232"/>
-            <Setter Property="Background" Value="#7DC3FD"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="FontFamily" Value="Inter"/>
-            <Setter Property="CornerRadius" Value="30,30,30,30"/>
-            <Setter Property="Height" Value="48"/>
-        </Style>
         <Style TargetType="TextBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
             <Setter Property="Background" Value="#90FDB67C"/>
@@ -54,16 +41,10 @@
             <!--<TextBlock Text="Добавление рецепта" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
             <Button x:Name="CreateIngredient" Grid.Row="0" Content="Создать инредиент" HorizontalAlignment="Right" Margin="0" Width="240"/>
         </Grid>
-        <Grid CornerRadius="30,30,30,30" Background="#EDEDED">
-            <Grid.RowDefinitions>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-                <RowDefinition/>
-            </Grid.RowDefinitions>
-            <Button Grid.Row="0" Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="6"/>
-            <TextBox x:Name="RecipeNameField" Grid.Row="1" PlaceholderText="Наименование рецепта" Margin="12"/>
-            <StackPanel Name="Ingredients" Grid.Row="2" Spacing="24" Padding="12">
+        <StackPanel CornerRadius="30,30,30,30" Background="#EDEDED">
+            <Button Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="6"/>
+            <TextBox x:Name="RecipeNameField" PlaceholderText="Наименование рецепта" Margin="12"/>
+            <StackPanel Name="Ingredients" Spacing="12" Padding="12">
                 <StackPanel.Children>
                     <Grid x:Name="childgrid" ColumnSpacing="6">
                     <Grid.ColumnDefinitions>
@@ -77,8 +58,8 @@
                     </Grid>
                 </StackPanel.Children>
             </StackPanel>
-            <Button Grid.Row="3" Content="Добавить инредиент" Width="300" HorizontalAlignment="Center" Click="AddIngredient_Click"/>
-        </Grid>
+            <Button Content="Добавить инредиент" Width="300" HorizontalAlignment="Center" Click="AddIngredient_Click"/>
+        </StackPanel>
 
     </StackPanel>
 </Page>

@@ -34,14 +34,9 @@ namespace FoodHelperApp
         private void Auth_Click(object sender, RoutedEventArgs e)
 		{
 			if (FoodHelperDB.CheckUser(Login.Text, Password.Password)) 
-			{
-				Frame.Navigate(typeof(MainPage)); 
-			}
+				Frame.Navigate(typeof(MainPage), Remember.IsChecked == null && Remember.IsChecked != false); 
 			else
-			{
-				Login.Text = "";
-				Password.Password = "";
-			}
+				Password.Password = ""; //Если пароль неверный, вывести уведомление
         }
 
         private void Register_Click(object sender, RoutedEventArgs e)
