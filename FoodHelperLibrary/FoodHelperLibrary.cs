@@ -191,12 +191,29 @@ namespace FoodHelperLibrary
             {
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "UPDATE Burned SET calories = calories + @burnedCal " +
-                    "WHERE userID = @userID AND `date`= Date('now'); ";
-                command.Parameters.AddWithValue("@burnedCal", burnedCal);
+                command.CommandText = "SELECT calories FROM Burned b WHERE userID = 1 AND `date` = DATE('now'); ";
                 command.Parameters.AddWithValue("@userID", userID);
                 command.Connection = connection;
-                command.ExecuteNonQuery();
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows)
+                {
+                    command = new SqliteCommand();
+                    command.CommandText = "UPDATE Burned SET calories = calories + @burnedCal " +
+                        "WHERE userID = @userID AND `date`= Date('now'); ";
+                    command.Parameters.AddWithValue("@burnedCal", burnedCal);
+                    command.Parameters.AddWithValue("@userID", userID); ;
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+                else
+                {
+                    command = new SqliteCommand();
+                    command.CommandText = "INSERT INTO Burned(calories, `date`, userID) VALUES(@burnedCal, DATE('now'), @userID); ";
+                    command.Parameters.AddWithValue("@burnedCal", burnedCal);
+                    command.Parameters.AddWithValue("@userID", userID); ;
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
             }
         }
 
@@ -296,5 +313,39 @@ namespace FoodHelperLibrary
 
             }
         }
+
+        public static List<string> GetRecipeAll()
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                var recipiesList = new List<string>();
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT recipeName  FROM Recipies r; ";
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows) while (result.Read()) recipiesList.Add(result["recipeName"].ToString());
+                else return null;
+                return recipiesList;
+            }
+        }
+
+        public static List<string> GetIngredient(int userID, int days)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                var IngredientsList = new List<string>();
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT ingredientName FROM Ingredients i;";
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows) while (result.Read()) IngredientsList.Add(result["ingredientName"].ToString());
+                else return null;
+                return IngredientsList;
+            }
+        }
+
+
     }
 }
