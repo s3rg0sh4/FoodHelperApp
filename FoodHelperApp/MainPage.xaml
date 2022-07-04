@@ -59,7 +59,7 @@
                             <RowDefinition Height="Auto"/>
                             <RowDefinition/>
                         </Grid.RowDefinitions>
-                        <Button Grid.Row="0" Content="Сегодня съедено" HorizontalAlignment="Stretch" Click="AddAteToday_Click"/>
+                        <Button Grid.Row="0" Content="Сегодня съедено +" HorizontalAlignment="Stretch" Click="AddAteToday_Click"/>
                         <ListView x:Name="AteTodayGridView" Grid.Row="1" ItemsSource="{x:Bind DisplayMealList}"/>
                     </Grid>
                     <Grid Style="{StaticResource GrayBlock}" Grid.Row="1">

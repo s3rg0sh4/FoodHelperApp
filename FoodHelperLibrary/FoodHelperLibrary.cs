@@ -37,8 +37,7 @@ namespace FoodHelperLibrary
                     "CREATE TABLE IF NOT EXISTS " +
                     "Recipies (" +
                     "recipeID INTEGER PRIMARY KEY NOT NULL, " +
-                    "recipeName CHARACTER(50) NOT NULL, " +
-                    "weight DOUBLE NOT NULL" +
+                    "recipeName CHARACTER(50) NOT NULL " +
                     ");", connection);
 
                 SqliteCommand createIngredientsRecipiesTable = new SqliteCommand(
