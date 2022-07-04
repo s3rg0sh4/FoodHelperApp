@@ -38,6 +38,8 @@ namespace FoodHelperApp
 			//ивент при нажатии любой из кнопок обновляет данные в блоках
 
 			SizeChanged += ResiseCheck;
+
+			BurnedToday.Text = FoodHelperDB.GetUserStatsBurned(1, 0).ToString();
 		}
 
 

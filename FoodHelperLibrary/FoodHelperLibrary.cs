@@ -170,10 +170,25 @@ namespace FoodHelperLibrary
             {
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT calories FROM Burned b " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND Date('now');";
+                switch (days)
+                {
+                    case 0:
+                        command.CommandText = "SELECT SUM(calories) FROM Burned b " +
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-0 days') AND DATE('now'); ";
+                        break;
+                    case 7:
+                        command.CommandText = "SELECT SUM(calories) FROM Burned b " +
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-7 days') AND DATE('now'); ";
+                        break;
+                    case 30:
+                        command.CommandText = "SELECT SUM(calories) FROM Burned b " +
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-30 days') AND DATE('now'); ";
+                        break;
+
+                }
+
+
                 command.Parameters.AddWithValue("@userID", userID);
-                command.Parameters.AddWithValue("@days", days);
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
                 if (result.HasRows)
@@ -224,13 +239,32 @@ namespace FoodHelperLibrary
                 var stats = new List<(double cal, double protein, double fat, double carb)>();
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
+                switch (days)
+                {
+                    case 0:
+                        command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
                     "SUM(proteins*`count`) AS protein, " +
                     "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
                     "JOIN Users_Recepies ur USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND Date('now'); ";
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-0 days') AND Date('now'); ";
+                        break;
+                    case 7:
+                        command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
+                    "SUM(proteins*`count`) AS protein, " +
+                    "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
+                    "JOIN Users_Recepies ur USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-7 days') AND Date('now'); ";
+                        break;
+                    case 30:
+                        command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
+                    "SUM(proteins*`count`) AS protein, " +
+                    "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
+                    "JOIN Users_Recepies ur USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-30 days') AND Date('now'); ";
+                        break;
+
+                }
                 command.Parameters.AddWithValue("@userID", userID);
-                command.Parameters.AddWithValue("@days", days);
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
                 if (result.HasRows)
@@ -253,10 +287,28 @@ namespace FoodHelperLibrary
                 var stats = new List<string>();
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT recipeName " +
-					"FROM Users_Recepies ur " +
+                switch (days)
+                {
+                    case 0:
+                        command.CommandText = "SELECT recipeName " +
+                    "FROM Users_Recepies ur " +
                     "JOIN Recepies r USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-@days days') AND Date('now'); ";
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-0 days') AND Date('now'); ";
+                        break;
+                    case 7:
+                        command.CommandText = "SELECT recipeName " +
+                    "FROM Users_Recepies ur " +
+                    "JOIN Recepies r USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-7 days') AND Date('now'); ";
+                        break;
+                    case 30:
+                        command.CommandText = "SELECT recipeName " +
+                    "FROM Users_Recepies ur " +
+                    "JOIN Recepies r USING(recipeID) " +
+                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-30 days') AND Date('now'); ";
+                        break;
+                }
+                
                 command.Parameters.AddWithValue("@userID", userID);
                 command.Parameters.AddWithValue("@days", days);
                 command.Connection = connection;
@@ -346,6 +398,52 @@ namespace FoodHelperLibrary
             }
         }
 
+        public static void AddRecipe(string recipeName, List<(string Name, int Weight)> ingredients)
+        {
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                int recipeID = -1;
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "INSERT INTO Recipies(recipeName) VALUES('@recipeName') RETURNING recipeID;";
+                command.Parameters.AddWithValue("@recipeName", recipeName);
+                command.Connection = connection;
+                SqliteDataReader result = command.ExecuteReader();
+                if (result.HasRows)
+                    while (result.Read())
+                    {
+                        recipeID = int.Parse(result["recipeID"].ToString());
+                    }
+                else throw new Exception("Нет id");
 
+                List<(int Id, int Weight)> ids = new List<(int, int)>();
+
+                foreach (var ingredient in ingredients)
+                {
+                    command = new SqliteCommand();
+                    command.CommandText = "SELECT ingredientID  FROM Ingredients i WHERE ingredientName = '@ingredientName'; ";
+                    command.Parameters.AddWithValue("@ingredientName", ingredient.Name);
+                    command.Connection = connection;
+                    result = command.ExecuteReader();
+                    if (result.HasRows)
+                    {
+                        result.Read();
+                        ids.Add((int.Parse(result["ingredientID"].ToString()), ingredient.Weight));
+                    }
+                }
+
+                foreach (var id in ids)
+                {
+                    command = new SqliteCommand();
+                    command.CommandText = "INSERT INTO Ingredients_Recipies(ingredientID, recipeID, weight) " +
+                        "VALUES(@ingredientID, @recipeID, @weight); ";
+                    command.Parameters.AddWithValue("@ingredientID", id.Id);
+                    command.Parameters.AddWithValue("@recipeID", recipeID);
+                    command.Parameters.AddWithValue("@weight", id.Weight);
+                    command.Connection = connection;
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
     }
 }
