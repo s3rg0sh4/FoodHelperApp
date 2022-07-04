@@ -26,17 +26,17 @@
 
     <StackPanel Height="395" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67" Spacing="12">
 
-        <Button x:Name="CloseAddBurned" 
-                    Width="100" Height="100" 
+        <Button  Width="100" Height="100" 
                     VerticalAlignment="Top" 
                     HorizontalAlignment="Right" 
                     Background="#00FFFFFF" 
                     Foreground="#323232"
                     FontFamily="Marlett"
                     FontSize="50"
-                    Content="r"/>
+                    Content="r"
+                    Click="Close_Click"/>
         <TextBlock Text="Cколько калорий вы сожгли" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" TextAlignment="Center" Width="500"/>
-        <TextBox Grid.Row="0" x:Name="BurnedText" PlaceholderText="Количество калорий"/>
+        <TextBox x:Name="Cals" Grid.Row="0" PlaceholderText="Количество калорий"/>
         <Button Content="Добавить" HorizontalAlignment="Center" Width="250" Click="AddBurned_Click"/>
     </StackPanel>
 </Page>
