@@ -12,8 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
-
-// Документацию по шаблону элемента "Пустая страница" см. по адресу https://go.microsoft.com/fwlink/?LinkId=234238
+using FoodHelperLibrary;
 
 namespace FoodHelperApp
 {
@@ -29,7 +28,14 @@ namespace FoodHelperApp
 
 		private void AddIngredientButton_Click(object sender, RoutedEventArgs e)
 		{
-
+            try
+            {
+                FoodHelperDB.AddIngredient(NameIngField.Text, int.Parse(CountCal.Text),
+                                int.Parse(CountProtein.Text), int.Parse(CountrFat.Text), int.Parse(CountCarb.Text));
+                Frame.GoBack();
+            } catch (Exception) { 
+                //Сделай, пожалуйста, красиво <3
+            };
 		}
 
         private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();

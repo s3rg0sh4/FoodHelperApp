@@ -29,9 +29,10 @@
         <Button Width="100" Height="100" 
                     HorizontalAlignment="Right" 
                     Background="#00FFFFFF" Foreground="#323232"
-                    FontFamily="Marlett" FontSize="50" Content="r"/>
+                    FontFamily="Marlett" FontSize="50" Content="r"
+                Click="Close_Click"/>
         <TextBlock Text="Что скушали?" TextWrapping="Wrap" FontSize="28" HorizontalAlignment="Center" VerticalAlignment="Center" TextAlignment="Center" Width="500"/>
-        <ComboBox Grid.Row="0" x:Name="AddMealText" VerticalAlignment="Center" HorizontalAlignment="Center" PlaceholderText="Количество калорий"/>
+        <ComboBox Grid.Row="0" x:Name="AddMealCmb" ItemsSource="{x:Bind CmbContent}" IsTextSearchEnabled="True" VerticalAlignment="Center" HorizontalAlignment="Center" PlaceholderText="Выберите блюдо"/>
         <Button Content="Добавить" 
                     HorizontalAlignment="Center" 
                     Width="250"

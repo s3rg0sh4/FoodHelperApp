@@ -1,5 +1,7 @@
-﻿using System;
+﻿using FoodHelperLibrary;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -22,6 +24,8 @@ namespace FoodHelperApp
     /// </summary>
     public sealed partial class AddMeal : Page
     {
+        public ObservableCollection<string> CmbContent { get { return new ObservableCollection<string>(FoodHelperDB.GetRecipeAll()); } }
+
         public AddMeal()
         {
             this.InitializeComponent();
@@ -29,7 +33,13 @@ namespace FoodHelperApp
 
 		private void AddMeal_Click(object sender, RoutedEventArgs e)
 		{
+            FoodHelperDB.AddUserAte(1, AddMealCmb.SelectedItem.ToString());
+            Frame.GoBack();
+        }
 
-		}
-	}
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.GoBack();
+        }
+    }
 }

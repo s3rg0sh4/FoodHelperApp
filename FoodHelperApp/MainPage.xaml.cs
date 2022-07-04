@@ -26,20 +26,21 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		private ObservableCollection<(double cal, double protein, double fat, double carb)> userStats;
-		public ObservableCollection<(double cal, double protein, double fat, double carb)> UserStats => userStats;
-
-		private ObservableCollection<string> displayMealList;
-		public ObservableCollection<string> DisplayMealList => displayMealList;
+		public ObservableCollection<(string Name, int Count)> DisplayMealList => new ObservableCollection<(string Name, int Count)>(FoodHelperDB.GetUserAte(1, 0));
 		public MainPage()
 		{
 			this.InitializeComponent();
-			displayMealList = new ObservableCollection<string>();
+
 			//ивент при нажатии любой из кнопок обновляет данные в блоках
 
 			SizeChanged += ResiseCheck;
 
 			BurnedToday.Text = FoodHelperDB.GetUserStatsBurned(1, 0).ToString();
+
+			Gained.Text = FoodHelperDB.GetUserStats(1, 0).cal.ToString();
+			Proteins.Text = FoodHelperDB.GetUserStats(1, 0).protein.ToString();
+			Fats.Text = FoodHelperDB.GetUserStats(1, 0).fat.ToString();
+			Carbs.Text = FoodHelperDB.GetUserStats(1, 0).carb.ToString();
 		}
 
 

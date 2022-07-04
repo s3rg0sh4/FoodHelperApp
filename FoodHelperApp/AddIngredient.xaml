@@ -39,7 +39,7 @@
                  HorizontalAlignment="Center" TextAlignment="Center" Width="500"/>
 
 
-        <TextBox x:Name="NameIngFyeld" PlaceholderText="Наименование"/>
+        <TextBox x:Name="NameIngField" PlaceholderText="Наименование"/>
         <TextBox x:Name="CountCal" PlaceholderText="Количество калорий"/>
         <TextBox x:Name="CountProtein" PlaceholderText="Количество белков"/>
         <TextBox x:Name="CountrFat" PlaceholderText="Количество жиров"/>
