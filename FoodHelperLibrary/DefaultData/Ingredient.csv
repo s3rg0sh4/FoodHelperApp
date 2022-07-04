@@ -1,4 +1,4 @@
-﻿IngredientID;IngredientName;Calories;Proteins;Fat;Carbs
+﻿ingredientID;ingredientName;calories;proteins;fats;carbs
 1;Бренди;227;0;0;1
 2;Вермут;154;0;0;15.9
 3;Вино сухое;65;0;0;0
