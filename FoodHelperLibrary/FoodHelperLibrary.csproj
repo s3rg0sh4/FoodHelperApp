@@ -135,14 +135,6 @@
       <Version>2.1.0</Version>
     </PackageReference>
   </ItemGroup>
-  <ItemGroup>
-    <None Include="DefaultData\Burned.csv" />
-    <None Include="DefaultData\Ingredient.csv" />
-    <None Include="DefaultData\Ingredients_Recipies.csv" />
-    <None Include="DefaultData\Recipies.csv" />
-    <None Include="DefaultData\User.csv" />
-    <None Include="DefaultData\Users_Recipies.csv" />
-  </ItemGroup>
   <PropertyGroup Condition=" '$(VisualStudioVersion)' == '' or '$(VisualStudioVersion)' &lt; '14.0' ">
     <VisualStudioVersion>14.0</VisualStudioVersion>
   </PropertyGroup>
