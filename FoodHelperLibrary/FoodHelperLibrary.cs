@@ -4,12 +4,14 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
 using Microsoft.Data.Sqlite;
+
 using Windows.Storage;
 
 namespace FoodHelperLibrary
 {
-    public static class FoodHelperDB
+	public static class FoodHelperDB
     {
         readonly static string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "FoodHelper.db");
 
@@ -64,11 +66,11 @@ namespace FoodHelperLibrary
                     "Users_Recipies (" +
                     "userID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
-                    "date DATE NOT NULL, " +
+                    "statDay DATE NOT NULL, " +
                     "count INTEGER, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID), " +
                     "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
-                    "CONSTRAINT UsersRecepiesPK PRIMARY KEY (userID, recipeID, date)" +
+                    "CONSTRAINT UsersRecepiesPK PRIMARY KEY (userID, recipeID, statDay)" +
                     ");", connection);
 
                 SqliteCommand createBurnedTable = new SqliteCommand(
@@ -76,7 +78,7 @@ namespace FoodHelperLibrary
                     "Burned (" +
                     "burnedID INTEGER PRIMARY KEY NOT NULL, " +
                     "calories DOUBLE, " +
-                    "date DATE, " +
+                    "statDay DATE, " +
                     "userID INTEGER NOT NULL, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID)" +
                     ");", connection);
@@ -164,23 +166,23 @@ namespace FoodHelperLibrary
             }
         }
 
-        public static int GetUserStatsBurned(int userID, int days)
+        public static int GetUserStatsBurned(int userID, Period period)
         {
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                switch (days)
+                switch (period)
                 {
-                    case 0:
+                    case Period.Day:
                         command.CommandText = "SELECT SUM(calories) AS calories FROM Burned b " +
                     "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-0 days') AND DATE('now'); ";
                         break;
-                    case 7:
+                    case Period.Week:
                         command.CommandText = "SELECT SUM(calories) AS calories FROM Burned b " +
                     "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-7 days') AND DATE('now'); ";
                         break;
-                    case 30:
+                    case Period.Month:
                         command.CommandText = "SELECT SUM(calories) AS calories FROM Burned b " +
                     "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-30 days') AND DATE('now'); ";
                         break;
@@ -191,9 +193,10 @@ namespace FoodHelperLibrary
                 if (result.HasRows)
                     while (result.Read())
                     {
-                        return int.Parse(result["calories"].ToString());
+						try { return int.Parse(result["calories"].ToString()); }
+                        catch(FormatException) { return 0; }
                     }
-                return -1;
+                return 0;
             }
         }
 
@@ -203,7 +206,7 @@ namespace FoodHelperLibrary
             {
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT calories FROM Burned b WHERE userID = 1 AND `date` = DATE('now'); ";
+                command.CommandText = "SELECT calories FROM Burned b WHERE userID = 1 AND statDay = DATE('now'); ";
                 command.Parameters.AddWithValue("@userID", userID);
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
@@ -211,7 +214,7 @@ namespace FoodHelperLibrary
                 {
                     command = new SqliteCommand();
                     command.CommandText = "UPDATE Burned SET calories = calories + @burnedCal " +
-                        "WHERE userID = @userID AND `date`= Date('now'); ";
+                        "WHERE userID = @userID AND statDay= Date('now'); ";
                     command.Parameters.AddWithValue("@burnedCal", burnedCal);
                     command.Parameters.AddWithValue("@userID", userID); ;
                     command.Connection = connection;
@@ -220,7 +223,7 @@ namespace FoodHelperLibrary
                 else
                 {
                     command = new SqliteCommand();
-                    command.CommandText = "INSERT INTO Burned(calories, `date`, userID) VALUES(@burnedCal, DATE('now'), @userID); ";
+                    command.CommandText = "INSERT INTO Burned(calories, statDay, userID) VALUES(@burnedCal, DATE('now'), @userID); ";
                     command.Parameters.AddWithValue("@burnedCal", burnedCal);
                     command.Parameters.AddWithValue("@userID", userID); ;
                     command.Connection = connection;
@@ -229,35 +232,35 @@ namespace FoodHelperLibrary
             }
         }
 
-        public static (double cal, double protein, double fat, double carb) GetUserStats(int userID, int days)
+        public static (double cal, double protein, double fat, double carb) GetUserStats(int userID, Period period)
         {
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
                 //var stats = new List<(double cal, double protein, double fat, double carb)>();
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                switch (days)
+                switch (period)
                 {
-                    case 0:
+                    case Period.Day:
                         command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
                     "SUM(proteins*`count`) AS protein, " +
                     "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
                     "JOIN Users_Recipies ur USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-0 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-0 days') AND Date('now'); ";
                         break;
-                    case 7:
+                    case Period.Week:
                         command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
                     "SUM(proteins*`count`) AS protein, " +
                     "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
                     "JOIN Users_Recipies ur USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-7 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-7 days') AND Date('now'); ";
                         break;
-                    case 30:
+                    case Period.Month:
                         command.CommandText = "SELECT SUM(calories*`count`) AS cal, " +
                     "SUM(proteins*`count`) AS protein, " +
                     "SUM(fats*`count`) AS fat, SUM(carbs*`count`) AS carb FROM RecipeStat rs " +
                     "JOIN Users_Recipies ur USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-30 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-30 days') AND Date('now'); ";
                         break;
 
                 }
@@ -267,46 +270,46 @@ namespace FoodHelperLibrary
                 if (result.HasRows)
                     while (result.Read())
                     {
-                        return (double.Parse(result["cal"].ToString()),
+                        try { return (double.Parse(result["cal"].ToString()),
                             double.Parse(result["protein"].ToString()),
                             double.Parse(result["fat"].ToString()),
-                            double.Parse(result["carb"].ToString()));
+                            double.Parse(result["carb"].ToString())); }
+                        catch (FormatException) { return (0, 0, 0, 0); }
                     }
                 return (0, 0, 0, 0);
             }
         }
 
-        public static List<(string Name, int Count)> GetUserAte(int userID, int days)
+        public static List<(string Name, int Count)> GetUserAte(int userID, Period period)
         {
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
                 var stats = new List<(string Name, int Count)>();
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                switch (days)
+                switch (period)
                 {
-                    case 0:
+                    case Period.Day:
                         command.CommandText = "SELECT recipeName, count " +
                     "FROM Users_Recipies ur " +
                     "JOIN Recipies r USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-0 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-0 days') AND Date('now'); ";
                         break;
-                    case 7:
+                    case Period.Week:
                         command.CommandText = "SELECT recipeName, count " +
                     "FROM Users_Recipies ur " +
                     "JOIN Recipies r USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-7 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-7 days') AND Date('now'); ";
                         break;
-                    case 30:
+                    case Period.Month:
                         command.CommandText = "SELECT recipeName, count " +
                     "FROM Users_Recipies ur " +
                     "JOIN Recipies r USING(recipeID) " +
-                    "WHERE userID = @userID AND `date` BETWEEN DATE('now', '-30 days') AND Date('now'); ";
+                    "WHERE userID = @userID AND statDay BETWEEN DATE('now', '-30 days') AND Date('now'); ";
                         break;
                 }
                 
                 command.Parameters.AddWithValue("@userID", userID);
-                command.Parameters.AddWithValue("@days", days);
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
                 if (result.HasRows)
@@ -336,8 +339,8 @@ namespace FoodHelperLibrary
                     }
 
                 command = new SqliteCommand();
-                command.CommandText = "SELECT userID, recipeID, `date` FROM Users_Recipies ur " +
-                    "WHERE recipeID = @recipeID AND userID = @userID AND `date`= Date('now'); ";
+                command.CommandText = "SELECT userID, recipeID, statDay FROM Users_Recipies ur " +
+                    "WHERE recipeID = @recipeID AND userID = @userID AND statDay= Date('now'); ";
                 command.Parameters.AddWithValue("@recipeID", recipeID);
                 command.Parameters.AddWithValue("@userID", userID);
                 command.Connection = connection;
@@ -345,7 +348,7 @@ namespace FoodHelperLibrary
                 if (result.HasRows) {
                     command = new SqliteCommand();
                     command.CommandText = "UPDATE Users_Recipies SET count = count + 1 " +
-                        "WHERE recipeID = @recipeID AND userID = @userID AND `date`= Date('now'); ";
+                        "WHERE recipeID = @recipeID AND userID = @userID AND statDay= Date('now'); ";
                     command.Parameters.AddWithValue("@recipeID", recipeID);
                     command.Parameters.AddWithValue("@userID", userID); ;
                     command.Connection = connection;
@@ -354,7 +357,7 @@ namespace FoodHelperLibrary
                 else
                 {
                     command = new SqliteCommand();
-                    command.CommandText = "INSERT INTO Users_Recipies(userID, recipeID, `date`, `count`) " +
+                    command.CommandText = "INSERT INTO Users_Recipies(userID, recipeID, statDay, `count`) " +
                         "VALUES(@userID, @recipeID, Date('now'), 1); ";
                     command.Parameters.AddWithValue("@recipeID", recipeID);
                     command.Parameters.AddWithValue("@userID", userID); ;

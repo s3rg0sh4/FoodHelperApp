@@ -26,6 +26,7 @@ namespace FoodHelperApp
     public sealed partial class AddRecipe : Page
     {
         public ObservableCollection<string> CmbContent { get { return new ObservableCollection<string>(FoodHelperDB.GetIngredientList()); } }
+        private int children = 1;
         public AddRecipe()
         {
             
@@ -35,15 +36,22 @@ namespace FoodHelperApp
 		private void AddRecipe_Click(object sender, RoutedEventArgs e)
 		{
 
-		}
+            children = 1;
+            Frame.GoBack();
+        }
 
-		private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();
+        private void Close_Click(object sender, RoutedEventArgs e) 
+        {
+            children = 1;
+            Frame.GoBack(); 
+        }
 
         private void AddIngredient_Click(object sender, RoutedEventArgs e)
         {
-
-
-		}
+            CmdStack.Children.Add(new ComboBox() { Name = $"CmbIng{children}"});
+            TbStack.Children.Add(new ComboBox() { Name = $"TbIng{children}"});
+            children++;
+        }
 
         
     }

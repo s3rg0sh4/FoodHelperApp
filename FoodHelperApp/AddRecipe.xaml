@@ -18,6 +18,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="25,12,5,10"/>
             <Setter Property="PlaceholderText" Value="Вес"/>
+            <Setter Property="Margin" Value="12"/>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
@@ -33,6 +34,7 @@
             <Setter Property="PlaceholderText" Value="Выберите ингредиент"/>
             <Setter Property="IsTextSearchEnabled" Value="True"/>
             <Setter Property="ItemsSource" Value="{x:Bind CmbContent}"/>
+            <Setter Property="Margin" Value="12"/>
         </Style>
     </Page.Resources>
 
@@ -40,28 +42,30 @@
 
         <Grid>
             <Button Grid.Row="0" Content="Назад" HorizontalAlignment="Left" Click="Close_Click" Width="144"/>
-            <!--<TextBlock Text="Добавление рецепта" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
             <Button x:Name="CreateIngredient" Grid.Row="0" Content="Создать инредиент" HorizontalAlignment="Right" Margin="0" Width="240"/>
         </Grid>
         <StackPanel CornerRadius="30,30,30,30" Background="#EDEDED">
-            <Button Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="6"/>
-            <TextBox x:Name="RecipeNameField" PlaceholderText="Наименование рецепта" Margin="12"/>
-            <StackPanel Name="Ingredients" Spacing="12" Padding="12">
-                <StackPanel.Children>
-                    <Grid x:Name="childgrid" ColumnSpacing="6">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="3*"/>
-                        <ColumnDefinition Width="*"/>
-                    </Grid.ColumnDefinitions>
-                        <Grid.Children>
-                            <ComboBox x:Name="ComboIng" Grid.Column="0"/>
-                            <TextBox Grid.Column="1"/>
-                        </Grid.Children>
-                    </Grid>
-                </StackPanel.Children>
-            </StackPanel>
-            <Button Content="Добавить инредиент" Width="300" HorizontalAlignment="Center" Click="AddIngredient_Click"/>
-        </StackPanel>
+            <Button Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="12"/>
+            <TextBox x:Name="RecipeNameField" PlaceholderText="Наименование рецепта"/>
 
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="3*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Name="CmdStack" Grid.Column="0" Spacing="12">
+                    <StackPanel.Children>
+                        <ComboBox Name="ComboIng0"/>
+                    </StackPanel.Children>
+                </StackPanel>
+                <StackPanel Name="TbStack" Grid.Column="1" Spacing="12">
+                    <StackPanel.Children>
+                        <TextBox Name="TbIng0"/>
+                    </StackPanel.Children>
+                </StackPanel>
+            </Grid>
+
+            <Button Content="Добавить инредиент" Width="300" HorizontalAlignment="Center" Click="AddIngredient_Click" Margin="12"/>
+        </StackPanel>
     </StackPanel>
 </Page>
