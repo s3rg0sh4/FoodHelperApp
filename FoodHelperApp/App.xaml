@@ -40,8 +40,12 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
         </Style>
-        
         <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="Inter"/>
+            <Setter Property="FontSize" Value="32"/>
+            <Setter Property="Foreground" Value="#323232"/>
+        </Style>
+        <Style TargetType="TextBox">
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="Foreground" Value="#323232"/>

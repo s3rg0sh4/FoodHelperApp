@@ -53,7 +53,7 @@
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <StackPanel Name="CmdStack" Grid.Column="0" Spacing="12">
+                <StackPanel Name="CmbStack" Grid.Column="0" Spacing="12">
                     <StackPanel.Children>
                         <ComboBox Name="ComboIng0"/>
                     </StackPanel.Children>

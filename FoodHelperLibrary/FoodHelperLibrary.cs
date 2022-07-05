@@ -247,7 +247,7 @@ namespace FoodHelperLibrary
             }
         }
 
-        public static (double cal, double protein, double fat, double carb) GetUserStats(int userID, Period period)
+        public static Stats GetUserStats(int userID, Period period)
         {
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
@@ -285,13 +285,13 @@ namespace FoodHelperLibrary
                 if (result.HasRows)
                     while (result.Read())
                     {
-                        try { return (double.Parse(result["cal"].ToString()),
+                        try { return new Stats(double.Parse(result["cal"].ToString()),
                             double.Parse(result["protein"].ToString()),
                             double.Parse(result["fat"].ToString()),
                             double.Parse(result["carb"].ToString())); }
-                        catch (FormatException) { return (0, 0, 0, 0); }
+                        catch (FormatException) { return new Stats(0, 0, 0, 0); }
                     }
-                return (0, 0, 0, 0);
+                return new Stats(0, 0, 0, 0);
             }
         }
 
@@ -390,7 +390,7 @@ namespace FoodHelperLibrary
                 var recipiesList = new List<string>();
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "SELECT recipeName  FROM Recipies r; ";
+                command.CommandText = "SELECT recipeName FROM Recipies r; ";
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
                 if (result.HasRows) while (result.Read()) recipiesList.Add(result["recipeName"].ToString());
@@ -440,15 +440,15 @@ namespace FoodHelperLibrary
                 int recipeID = -1;
                 connection.Open();
                 SqliteCommand command = new SqliteCommand();
-                command.CommandText = "INSERT INTO Recipies(recipeName) VALUES('@recipeName') RETURNING recipeID;";
+                command.CommandText = "INSERT INTO Recipies(recipeName) VALUES(@recipeName); SELECT last_insert_rowid() AS recipeID;";
                 command.Parameters.AddWithValue("@recipeName", recipeName);
                 command.Connection = connection;
                 SqliteDataReader result = command.ExecuteReader();
                 if (result.HasRows)
-                    while (result.Read())
-                    {
-                        recipeID = int.Parse(result["recipeID"].ToString());
-                    }
+                {
+                    result.Read();
+                    recipeID = int.Parse(result["recipeID"].ToString());
+                }
                 else throw new Exception("Нет id");
 
                 List<(int Id, int Weight)> ids = new List<(int, int)>();

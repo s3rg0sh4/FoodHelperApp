@@ -75,7 +75,7 @@
                                 <RowDefinition Height="48"/>
                             </Grid.RowDefinitions>
                             <Image x:Name="BurnedIMG" Style="{StaticResource Burned}" Grid.Row="1"/>
-                            <TextBlock x:Name="BurnedToday" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                            <TextBlock x:Name="BurnedToday" Grid.Row="2" Text="{x:Bind Burned}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         </Grid>
                     </Grid>
                 </Grid>
@@ -96,7 +96,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Калории" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <Image x:Name="CaloriesIMG" Style="{StaticResource Gained}" Grid.Row="1"/>
-                        <TextBlock x:Name="Gained" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="Gained" Grid.Row="2" Text="{x:Bind Stats.Calories}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                     </Grid>
                     <Grid Style="{StaticResource WhiteBlock}" Grid.Column="1" Grid.Row="0">
                         <Grid.RowDefinitions>
@@ -106,7 +106,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Белки" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <Image x:Name="ProteinsIMG" Style="{StaticResource Proteins}" Grid.Row="1"/>
-                        <TextBlock x:Name="Proteins" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="Proteins" Grid.Row="2" Text="{x:Bind Stats.Calories}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                     </Grid>
                     <Grid Style="{StaticResource WhiteBlock}" Grid.Column="0" Grid.Row="1">
                         <Grid.RowDefinitions>
@@ -116,7 +116,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Жиры" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <Image x:Name="FatsIMG" Style="{StaticResource Fats}" Grid.Row="1"/>
-                        <TextBlock x:Name="Fats" Text="100" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="Fats"  Grid.Row="2" Text="{x:Bind Stats.Fats}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                     </Grid>
                     <Grid Style="{StaticResource WhiteBlock}" Grid.Column="1" Grid.Row="1">
                         <Grid.RowDefinitions>
@@ -126,7 +126,7 @@
                         </Grid.RowDefinitions>
                         <TextBlock Text="Углеводы" HorizontalAlignment="Center" VerticalAlignment="Top"/>
                         <Image x:Name="CarbsIMG" Style="{StaticResource Carbs}" Grid.Row="1"/>
-                        <TextBlock x:Name="Carbs" Grid.Row="2" Text="100" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        <TextBlock x:Name="Carbs" Grid.Row="2" Text="{x:Bind Stats.Calories}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                     </Grid>
                 </Grid>
             </Grid>

@@ -27,7 +27,9 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		public User User { get; set; } //осталось запомнить юзера
+		public User User { get; set; }
+		public Stats Stats => FoodHelperDB.GetUserStats(User.Id, Period.Day);
+		public int Burned => FoodHelperDB.GetUserStatsBurned(User.Id, Period.Day);
 		public ObservableCollection<string> DisplayMealList
 		{
 			get
@@ -36,6 +38,8 @@ namespace FoodHelperApp
 				catch (ArgumentNullException) { return new ObservableCollection<string>(); }
 			}
 		}
+
+
 		public MainPage()
 		{
 			this.InitializeComponent();
@@ -43,11 +47,11 @@ namespace FoodHelperApp
 
 			SizeChanged += ResiseCheck;
 
-			BurnedToday.Text = FoodHelperDB.GetUserStatsBurned(1, Period.Day).ToString();
-			Gained.Text = FoodHelperDB.GetUserStats(1, Period.Day).cal.ToString();
-			Proteins.Text = FoodHelperDB.GetUserStats(1, Period.Day).protein.ToString();
-			Fats.Text = FoodHelperDB.GetUserStats(1, Period.Day).fat.ToString();
-			Carbs.Text = FoodHelperDB.GetUserStats(1, Period.Day).carb.ToString();
+			//BurnedToday.Text = FoodHelperDB.GetUserStatsBurned(User.Id, Period.Day).ToString();
+			//Gained.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).cal.ToString();
+			//Proteins.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).protein.ToString();
+			//Fats.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).fat.ToString();
+			//Carbs.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).carb.ToString();
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)

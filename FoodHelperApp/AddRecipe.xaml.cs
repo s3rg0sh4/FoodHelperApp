@@ -35,6 +35,11 @@ namespace FoodHelperApp
 
 		private void AddRecipe_Click(object sender, RoutedEventArgs e)
 		{
+            
+            FoodHelperDB.AddRecipe(RecipeNameField.Text, 
+                new List<(string Name, int Weight)>(from a in CmbStack.Children join b in TbStack.Children 
+                                                    on CmbStack.Children.IndexOf(a) equals TbStack.Children.IndexOf(b) 
+                                                    select (((ComboBox)a).SelectedItem.ToString(), int.Parse(((TextBox)b).Text.ToString()))));
 
             children = 1;
             Frame.GoBack();
@@ -48,7 +53,7 @@ namespace FoodHelperApp
 
         private void AddIngredient_Click(object sender, RoutedEventArgs e)
         {
-            CmdStack.Children.Add(new ComboBox() { Name = $"CmbIng{children}"});
+            CmbStack.Children.Add(new ComboBox() { Name = $"CmbIng{children}"});
             TbStack.Children.Add(new TextBox() { Name = $"TbIng{children}"});
             children++;
         }
