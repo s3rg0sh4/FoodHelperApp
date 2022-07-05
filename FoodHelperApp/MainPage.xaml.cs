@@ -45,13 +45,7 @@ namespace FoodHelperApp
 			this.InitializeComponent();
 			//ивент при нажатии любой из кнопок обновляет данные в блоках
 
-			SizeChanged += ResiseCheck;
-
-			//BurnedToday.Text = FoodHelperDB.GetUserStatsBurned(User.Id, Period.Day).ToString();
-			//Gained.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).cal.ToString();
-			//Proteins.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).protein.ToString();
-			//Fats.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).fat.ToString();
-			//Carbs.Text = FoodHelperDB.GetUserStats(User.Id, Period.Day).carb.ToString();
+			//SizeChanged += ResiseCheck;
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -72,41 +66,6 @@ namespace FoodHelperApp
 		}
 
 
-		private void ResiseCheck(object sender, SizeChangedEventArgs e)
-		{
-			if (e.NewSize.Height < 720)
-			{
-				BurnedIMG.Visibility = Visibility.Collapsed;
-				CaloriesIMG.Visibility = Visibility.Collapsed;
-				ProteinsIMG.Visibility = Visibility.Collapsed;
-				FatsIMG.Visibility = Visibility.Collapsed;
-				CarbsIMG.Visibility = Visibility.Collapsed;
-			}
-			else if (e.NewSize.Height >= 720)
-			{
-				BurnedIMG.Visibility = Visibility.Visible;
-				CaloriesIMG.Visibility = Visibility.Visible;
-				ProteinsIMG.Visibility = Visibility.Visible;
-				FatsIMG.Visibility = Visibility.Visible;
-				CarbsIMG.Visibility = Visibility.Visible;
-			}
-			if (e.NewSize.Width < 1024)
-			{
-				BurnedIMG.Visibility = Visibility.Collapsed;
-				CaloriesIMG.Visibility = Visibility.Collapsed;
-				ProteinsIMG.Visibility = Visibility.Collapsed;
-				FatsIMG.Visibility = Visibility.Collapsed;
-				CarbsIMG.Visibility = Visibility.Collapsed;
-			}
-			else if (e.NewSize.Width >= 1024)
-			{
-				BurnedIMG.Visibility = Visibility.Visible;
-				CaloriesIMG.Visibility = Visibility.Visible;
-				ProteinsIMG.Visibility = Visibility.Visible;
-				FatsIMG.Visibility = Visibility.Visible;
-				CarbsIMG.Visibility = Visibility.Visible;
-			}
-		}
 
 		private void Exit_Click(object sender, RoutedEventArgs e)
 		{
@@ -127,5 +86,41 @@ namespace FoodHelperApp
 		private void AddBurnedToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddBurned));
 
 		private void AddAteToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddMeal));
+		
+		//private void ResiseCheck(object sender, SizeChangedEventArgs e)
+		//{
+		//	if (e.NewSize.Height < 600)
+		//	{
+		//		BurnedIMG.Visibility = Visibility.Collapsed;
+		//		CaloriesIMG.Visibility = Visibility.Collapsed;
+		//		ProteinsIMG.Visibility = Visibility.Collapsed;
+		//		FatsIMG.Visibility = Visibility.Collapsed;
+		//		CarbsIMG.Visibility = Visibility.Collapsed;
+		//	}
+		//	else if (e.NewSize.Height >= 600)
+		//	{
+		//		BurnedIMG.Visibility = Visibility.Visible;
+		//		CaloriesIMG.Visibility = Visibility.Visible;
+		//		ProteinsIMG.Visibility = Visibility.Visible;
+		//		FatsIMG.Visibility = Visibility.Visible;
+		//		CarbsIMG.Visibility = Visibility.Visible;
+		//	}
+		//	if (e.NewSize.Width < 900)
+		//	{
+		//		BurnedIMG.Visibility = Visibility.Collapsed;
+		//		CaloriesIMG.Visibility = Visibility.Collapsed;
+		//		ProteinsIMG.Visibility = Visibility.Collapsed;
+		//		FatsIMG.Visibility = Visibility.Collapsed;
+		//		CarbsIMG.Visibility = Visibility.Collapsed;
+		//	}
+		//	else if (e.NewSize.Width >= 900)
+		//	{
+		//		BurnedIMG.Visibility = Visibility.Visible;
+		//		CaloriesIMG.Visibility = Visibility.Visible;
+		//		ProteinsIMG.Visibility = Visibility.Visible;
+		//		FatsIMG.Visibility = Visibility.Visible;
+		//		CarbsIMG.Visibility = Visibility.Visible;
+		//	}
+		//}
 	}
 }
