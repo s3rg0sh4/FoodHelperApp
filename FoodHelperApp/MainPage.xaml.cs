@@ -19,15 +19,30 @@ using Windows.UI.Core;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.Contacts;
 using Windows.UI.Composition;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace FoodHelperApp
 {
 	/// <summary>
 	/// Пустая страница, которую можно использовать саму по себе или для перехода внутри фрейма.
 	/// </summary>
-	public sealed partial class MainPage : Page
+	public sealed partial class MainPage : Page, INotifyPropertyChanged
 	{
-		public Period Period { get; set; }
+		public event PropertyChangedEventHandler PropertyChanged;
+		private Period period;
+		public Period Period 
+		{ 
+			get { return period; } 
+			set 
+			{ 
+				period = value;
+				NotifyPropertyChanged("Stats");
+				NotifyPropertyChanged("Burned");
+				NotifyPropertyChanged("DisplayMealList");
+			} 
+		}
+		
 		public User User { get; set; }
 		public Stats Stats => FoodHelperDB.GetUserStats(User.Id, Period);
 		public int Burned => FoodHelperDB.GetUserStatsBurned(User.Id, Period);
@@ -44,12 +59,14 @@ namespace FoodHelperApp
 		public MainPage()
 		{
 			this.InitializeComponent();
-			//ивент при нажатии любой из кнопок обновляет данные в блоках
 			LeftButton.Visibility = Visibility.Collapsed;
-
-			//SizeChanged += ResiseCheck;
 		}
 
+		private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+		{
+			PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+		}
+		
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
 			base.OnNavigatedTo(e);
@@ -65,8 +82,6 @@ namespace FoodHelperApp
 				ApplicationData.Current.LocalSettings.Values["UserInfo"] = composite;
 			}
 		}
-
-
 
 		private void Exit_Click(object sender, RoutedEventArgs e)
 		{
@@ -88,32 +103,12 @@ namespace FoodHelperApp
 
 		private void AddAteToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddMeal));
 
-		private void PreviousPeriod_Click(object sender, RoutedEventArgs e)
-		{
-			Period--;
-			switch (Period)
-			{
-				case Period.Day:
-					BlockInfo.Text = "Представлены данные за сегодня";
-					LeftButton.Visibility = Visibility.Collapsed;
-					RightButton.Visibility = Visibility.Visible;
-					break;
-				case Period.Week:
-					BlockInfo.Text = "Представлены данные за неделю";
-					LeftButton.Visibility = Visibility.Visible;
-					RightButton.Visibility = Visibility.Visible;
-					break;
-				case Period.Month:
-					BlockInfo.Text = "Представлены данные за месяц";
-					LeftButton.Visibility = Visibility.Visible;
-					RightButton.Visibility = Visibility.Collapsed;
-					break;
-			}
-		}
+        private void PreviousPeriod_Click(object sender, RoutedEventArgs e) => UpdateBlockInfo(--Period);
 
-		private void NextPeriod_Click(object sender, RoutedEventArgs e)
-		{
-			Period++;
+        private void NextPeriod_Click(object sender, RoutedEventArgs e) => UpdateBlockInfo(++Period);
+
+        private void UpdateBlockInfo(Period period)
+        {
 			switch (Period)
 			{
 				case Period.Day:
@@ -131,42 +126,8 @@ namespace FoodHelperApp
 					LeftButton.Visibility = Visibility.Visible;
 					RightButton.Visibility = Visibility.Collapsed;
 					break;
+
 			}
 		}
-		//private void ResiseCheck(object sender, SizeChangedEventArgs e)
-		//{
-		//	if (e.NewSize.Height < 600)
-		//	{
-		//		BurnedIMG.Visibility = Visibility.Collapsed;
-		//		CaloriesIMG.Visibility = Visibility.Collapsed;
-		//		ProteinsIMG.Visibility = Visibility.Collapsed;
-		//		FatsIMG.Visibility = Visibility.Collapsed;
-		//		CarbsIMG.Visibility = Visibility.Collapsed;
-		//	}
-		//	else if (e.NewSize.Height >= 600)
-		//	{
-		//		BurnedIMG.Visibility = Visibility.Visible;
-		//		CaloriesIMG.Visibility = Visibility.Visible;
-		//		ProteinsIMG.Visibility = Visibility.Visible;
-		//		FatsIMG.Visibility = Visibility.Visible;
-		//		CarbsIMG.Visibility = Visibility.Visible;
-		//	}
-		//	if (e.NewSize.Width < 900)
-		//	{
-		//		BurnedIMG.Visibility = Visibility.Collapsed;
-		//		CaloriesIMG.Visibility = Visibility.Collapsed;
-		//		ProteinsIMG.Visibility = Visibility.Collapsed;
-		//		FatsIMG.Visibility = Visibility.Collapsed;
-		//		CarbsIMG.Visibility = Visibility.Collapsed;
-		//	}
-		//	else if (e.NewSize.Width >= 900)
-		//	{
-		//		BurnedIMG.Visibility = Visibility.Visible;
-		//		CaloriesIMG.Visibility = Visibility.Visible;
-		//		ProteinsIMG.Visibility = Visibility.Visible;
-		//		FatsIMG.Visibility = Visibility.Visible;
-		//		CarbsIMG.Visibility = Visibility.Visible;
-		//	}
-		//}
 	}
 }
