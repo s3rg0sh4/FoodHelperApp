@@ -79,7 +79,7 @@ namespace FoodHelperApp
                     {
                         rootFrame.Navigate(typeof(Auth), e.Arguments);
                     } 
-                    else if (composite != null)
+                    else if (composite != null && !string.IsNullOrEmpty(composite["UserId"] as string))
                     {
                         int userId = int.Parse(composite["UserId"] as string);
                         string userName = composite["UserName"] as string;
