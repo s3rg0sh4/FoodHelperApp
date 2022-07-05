@@ -49,7 +49,7 @@ namespace FoodHelperApp
         private void AddIngredient_Click(object sender, RoutedEventArgs e)
         {
             CmdStack.Children.Add(new ComboBox() { Name = $"CmbIng{children}"});
-            TbStack.Children.Add(new ComboBox() { Name = $"TbIng{children}"});
+            TbStack.Children.Add(new TextBox() { Name = $"TbIng{children}"});
             children++;
         }
 

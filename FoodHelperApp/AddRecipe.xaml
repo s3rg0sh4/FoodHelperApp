@@ -18,7 +18,7 @@
             <Setter Property="BorderThickness" Value="0"/>
             <Setter Property="Padding" Value="25,12,5,10"/>
             <Setter Property="PlaceholderText" Value="Вес"/>
-            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Margin" Value="12,0"/>
         </Style>
         <Style TargetType="ComboBox">
             <Setter Property="Foreground" Value="#2d2d2d"/>
@@ -34,7 +34,7 @@
             <Setter Property="PlaceholderText" Value="Выберите ингредиент"/>
             <Setter Property="IsTextSearchEnabled" Value="True"/>
             <Setter Property="ItemsSource" Value="{x:Bind CmbContent}"/>
-            <Setter Property="Margin" Value="12"/>
+            <Setter Property="Margin" Value="12, 0"/>
         </Style>
     </Page.Resources>
 
@@ -46,9 +46,9 @@
         </Grid>
         <StackPanel CornerRadius="30,30,30,30" Background="#EDEDED">
             <Button Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="12"/>
-            <TextBox x:Name="RecipeNameField" PlaceholderText="Наименование рецепта"/>
+            <TextBox x:Name="RecipeNameField" PlaceholderText="Наименование рецепта" Margin="12"/>
 
-            <Grid>
+            <Grid> <!--Ну тут бы сделать прокрутку даааа....-->
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="3*"/>
                     <ColumnDefinition Width="*"/>
