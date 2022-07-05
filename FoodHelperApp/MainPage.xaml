@@ -64,7 +64,16 @@
                             <RowDefinition/>
                         </Grid.RowDefinitions>
                         <Button Grid.Row="0" Content="Сегодня съедено +" HorizontalAlignment="Stretch" Click="AddAteToday_Click"/>
-                        <ListView x:Name="AteTodayGridView" Grid.Row="1" ItemsSource="{x:Bind DisplayMealList}"/>
+                        <!--<ListView Grid.Row="1" />-->
+                        <ListView x:Name="MealListView" Grid.Row="1" ItemsSource="{x:Bind DisplayMealList}">
+                            <ListView.ItemContainerStyle>
+                                <Style TargetType="ListViewItem">
+                                    <Setter Property="Foreground" Value="#2D2D2D"/>
+                                    <Setter Property="FontSize" Value="32"/>
+                                    <Setter Property="CornerRadius" Value="30"/>
+                                </Style>
+                            </ListView.ItemContainerStyle>
+                        </ListView>
                     </Grid>
                     <Grid Style="{StaticResource GrayBlock}" Grid.Row="1">
                         <Button Content="Сегодня сожжено +" VerticalAlignment="Top" Click="AddBurnedToday_Click" HorizontalAlignment="Stretch"/>
