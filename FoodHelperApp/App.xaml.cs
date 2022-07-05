@@ -15,6 +15,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using FoodHelperLibrary;
+using Windows.Storage;
 
 namespace FoodHelperApp
 {
@@ -69,7 +70,28 @@ namespace FoodHelperApp
                     // Если стек навигации не восстанавливается для перехода к первой странице,
                     // настройка новой страницы путем передачи необходимой информации в качестве параметра
                     // навигации
-                    rootFrame.Navigate(typeof(MainPage), e.Arguments);
+
+                    ApplicationDataContainer localSettings = ApplicationData.Current.LocalSettings;
+
+                    // load a composite setting
+                    ApplicationDataCompositeValue composite = (ApplicationDataCompositeValue)localSettings.Values["UserInfo"];
+                    if (composite == null)
+                    {
+                        rootFrame.Navigate(typeof(Auth), e.Arguments);
+                    } 
+                    else if (composite != null)
+                    {
+                        int userId = int.Parse(composite["UserId"] as string);
+                        string userName = composite["UserName"] as string;
+                        string userPassword = composite["UserPassword"] as string;
+
+                        rootFrame.Navigate(typeof(MainPage), new User(userId, userName, userPassword));
+                    }
+					else
+					{
+                        rootFrame.Navigate(typeof(Auth), e.Arguments);
+					}
+
                 }
                 // Обеспечение активности текущего окна
                 Window.Current.Activate();

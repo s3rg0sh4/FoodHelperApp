@@ -28,10 +28,14 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Grid Grid.Row="0">
-                <Button Width="144"
-                    Grid.Column="0"
-                    Content="Выйти"
-                    Click="Exit_Click"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Left" Spacing="12">
+                    <Button Width="144"
+                        Content="Закрыть"
+                        Click="Close_Click"/>
+                    <Button Width="144"
+                        Content="Выйти"
+                        Click="Exit_Click"/>
+                </StackPanel>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Spacing="12">
                     <Button x:Name="AddIngredientButton" 
                             Content="Добавить ингредиент +"

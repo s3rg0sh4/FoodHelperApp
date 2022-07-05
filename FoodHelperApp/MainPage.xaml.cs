@@ -18,6 +18,7 @@ using Windows.Storage;
 using Windows.UI.Core;
 using System.Collections.ObjectModel;
 using Windows.ApplicationModel.Contacts;
+using Windows.UI.Composition;
 
 namespace FoodHelperApp
 {
@@ -51,8 +52,19 @@ namespace FoodHelperApp
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
+
 			base.OnNavigatedTo(e);
 			User = (User)e.Parameter;
+			if (User.Remember)
+			{
+				ApplicationDataCompositeValue composite = new ApplicationDataCompositeValue
+				{
+					["UserId"] = User.Id.ToString(),
+					["UserLogin"] = User.Name,
+					["UserPassword"] = User.Password
+				};
+				ApplicationData.Current.LocalSettings.Values["UserInfo"] = composite;
+			}
 		}
 
 
@@ -97,8 +109,12 @@ namespace FoodHelperApp
 			if (Frame.CanGoBack)
 				Frame.GoBack();
 			else
-				Application.Current.Exit();
+				Frame.Navigate(typeof(Auth));
+
+			ApplicationData.Current.LocalSettings.Values["UserInfo"] = null;
 		}
+
+		private void Close_Click(object sender, RoutedEventArgs e) => Application.Current.Exit();
 
 		private void AddIngredient_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddIngredient));
 

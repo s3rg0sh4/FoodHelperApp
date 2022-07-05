@@ -31,7 +31,7 @@ namespace FoodHelperApp
             if (!FoodHelperDB.CheckUser(Login.Text, Password.Password))
             {
                 FoodHelperDB.AddUser(Login.Text, Password.Password);
-                Frame.Navigate(typeof(MainPage), new User(Login.Text, Remember.IsChecked));
+                Frame.Navigate(typeof(MainPage), new User(Login.Text, Password.Password, Remember.IsChecked));
             }
             else
                 Frame.GoBack(); //Если юзер существует, доделать
