@@ -82,15 +82,12 @@
                           Padding="5" Margin="32,6,0,0"/>
             <Button Content="Нет аккаунта?" 
                     HorizontalAlignment="Center"
-                    Click="Register_Click" 
-                    VerticalAlignment="Top" 
-                    FontFamily="Inter"
+                    Click="Register_Click"
                     FontSize="10"
-                    Foreground="#323232" 
                     Background="#00ffffff" 
-                       Margin="0,6"
                     Height="25" 
-                    Width="108"/>
+                    Width="108"
+                    CornerRadius="0"/>
         </StackPanel>
     </Grid>
 </Page>

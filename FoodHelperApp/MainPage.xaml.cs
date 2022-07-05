@@ -26,18 +26,18 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
-		public ObservableCollection<(string Name, int Count)> DisplayMealList //Переделать
+		public User User { get; set; } //осталось запомнить юзера
+		public ObservableCollection<string> DisplayMealList
 		{
 			get
 			{
-				try { return new ObservableCollection<(string Name, int Count)>(FoodHelperDB.GetUserAte(1, Period.Day)); }
-				catch (ArgumentNullException) { return new ObservableCollection<(string Name, int Count)>() { ("Вы ничего не съели", -1) }; }
+				try { return new ObservableCollection<string>(from s in FoodHelperDB.GetUserAte(User.Id, Period.Day) select $"{s.Count} * {s.Name}"); }
+				catch (ArgumentNullException) { return new ObservableCollection<string>(); }
 			}
 		}
 		public MainPage()
 		{
 			this.InitializeComponent();
-
 			//ивент при нажатии любой из кнопок обновляет данные в блоках
 
 			SizeChanged += ResiseCheck;
@@ -47,6 +47,12 @@ namespace FoodHelperApp
 			Proteins.Text = FoodHelperDB.GetUserStats(1, Period.Day).protein.ToString();
 			Fats.Text = FoodHelperDB.GetUserStats(1, Period.Day).fat.ToString();
 			Carbs.Text = FoodHelperDB.GetUserStats(1, Period.Day).carb.ToString();
+		}
+
+		protected override void OnNavigatedTo(NavigationEventArgs e)
+		{
+			base.OnNavigatedTo(e);
+			User = (User)e.Parameter;
 		}
 
 

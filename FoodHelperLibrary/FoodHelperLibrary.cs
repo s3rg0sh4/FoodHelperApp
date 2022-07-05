@@ -67,7 +67,7 @@ namespace FoodHelperLibrary
                     "userID INTEGER NOT NULL, " +
                     "recipeID INTEGER NOT NULL, " +
                     "statDay DATE NOT NULL, " +
-                    "count INTEGER, " +
+                    "count INTEGER NOT NULL, " +
                     "CONSTRAINT FKuserID FOREIGN KEY (userID) REFERENCES Users(userID), " +
                     "CONSTRAINT FKrecipeID FOREIGN KEY (recipeID) REFERENCES Recipies(recipeID), " +
                     "CONSTRAINT UsersRecepiesPK PRIMARY KEY (userID, recipeID, statDay)" +
@@ -163,6 +163,21 @@ namespace FoodHelperLibrary
                         return int.Parse(result["userID"].ToString());
                     }
                 return -1;
+            }
+        }
+
+        public static bool CheckUserID(int id)
+        {
+            if (id < 0) return false;
+            using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
+            {
+                connection.Open();
+                SqliteCommand command = new SqliteCommand();
+                command.CommandText = "SELECT * FROM Users " +
+                    "WHERE userID = @id; ";
+                command.Parameters.AddWithValue("@id", id);
+                command.Connection = connection;
+                return command.ExecuteReader().HasRows;
             }
         }
 

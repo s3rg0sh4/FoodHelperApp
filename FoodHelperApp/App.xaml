@@ -31,7 +31,7 @@
             <Setter Property="MaxHeight" Value="149"/>
             <Setter Property="MaxWidth" Value="122"/>
         </Style>
-        
+
         <Style TargetType="Button">
             <Setter Property="Foreground" Value="#323232"/>
             <Setter Property="Background" Value="#7DC3FD"/>
@@ -40,17 +40,23 @@
             <Setter Property="CornerRadius" Value="30,30,30,30"/>
             <Setter Property="Height" Value="48"/>
         </Style>
-
-        <Style TargetType="Rectangle">
-            <Setter Property="HorizontalAlignment" Value="Center"/>
-            <Setter Property="VerticalAlignment" Value="Center" />
-            <Setter Property="RadiusX" Value="30"/>
-            <Setter Property="RadiusY" Value="30"/>
-        </Style>
+        
         <Style TargetType="TextBlock">
             <Setter Property="FontFamily" Value="Inter"/>
             <Setter Property="FontSize" Value="32"/>
             <Setter Property="Foreground" Value="#323232"/>
+        </Style>
+        <Style x:Key="CloseButton" TargetType="Button">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Height" Value="100"/>
+            <Setter Property="VerticalAlignment" Value="Top"/>
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Background" Value="#00FFFFFF"/>
+            <Setter Property="Foreground" Value="#323232"/>
+            <Setter Property="FontFamily" Value="Marlett"/>
+            <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Content" Value="r"/>
+            <Setter Property="CornerRadius" Value="100"/>
         </Style>
     </Application.Resources>
 </Application>

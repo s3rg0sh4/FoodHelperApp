@@ -25,20 +25,9 @@
     </Page.Resources>
 
     <StackPanel Height="744" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67" Spacing="12">
-        <Button     Width="100" Height="100" 
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Right" 
-                    Background="#00FFFFFF" 
-                    Foreground="#323232"
-                    FontFamily="Marlett"
-                    FontSize="50"
-                    Content="r"
-                    Click="Close_Click"/>
-
+        <Button Style="{StaticResource CloseButton}" Click="Close_Click"/>
         <TextBlock Text="Пожалуйста, указывайте параметры на 100 грамм" TextWrapping="Wrap" FontSize="28"
                  HorizontalAlignment="Center" TextAlignment="Center" Width="500"/>
-
-
         <TextBox x:Name="NameIngField" PlaceholderText="Наименование"/>
         <TextBox x:Name="CountCal" PlaceholderText="Количество калорий"/>
         <TextBox x:Name="CountProtein" PlaceholderText="Количество белков"/>

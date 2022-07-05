@@ -31,17 +31,12 @@ namespace FoodHelperApp
             if (!FoodHelperDB.CheckUser(Login.Text, Password.Password))
             {
                 FoodHelperDB.AddUser(Login.Text, Password.Password);
-                Frame.Navigate(typeof(MainPage));
+                Frame.Navigate(typeof(MainPage), new User(Login.Text, Remember.IsChecked));
             }
             else
                 Frame.GoBack(); //Если юзер существует, доделать
         }
 
 		private void Close_Click(object sender, RoutedEventArgs e) => Frame.GoBack();
-
-		private void CheckBox_Click(object sender, RoutedEventArgs e)
-		{
-
-		}
 	}
 }

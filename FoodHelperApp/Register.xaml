@@ -35,43 +35,19 @@
         </Style>
     </Page.Resources>
 
-    <Grid Height="640" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="100"/>
-            <RowDefinition Height="122"/>
-            <RowDefinition Height="196"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <Grid Grid.Row="0">
-            <Button Width="100" Height="100" 
-                    VerticalAlignment="Top" 
-                    HorizontalAlignment="Right"
-                    Background="#00FFFFFF" 
-                    Foreground="#323232"
-                    FontFamily="Marlett"
-                    FontSize="50"
-                    Content="r"
-                    Click="Close_Click"/>
-        </Grid>
-
-        <Grid Grid.Row="1">
-            <TextBlock Text="Помощник диетолога" FontSize="48" HorizontalAlignment="Center"/>
-            <TextBlock Text="Регистрация" HorizontalAlignment="Center" Margin="0,0,0,16" VerticalAlignment="Bottom"/>
-        </Grid>
-        <Grid Grid.Row="2">
-            <TextBox x:Name="Login" VerticalAlignment="Top" PlaceholderText="Логин"/>
-            <PasswordBox x:Name="Password" VerticalAlignment="Center" PlaceholderText="Пароль"/>
-            <PasswordBox x:Name="RepeatPassword" VerticalAlignment="Bottom" PlaceholderText="Повторите пароль"/>
-        </Grid>
-        <Grid Grid.Row="3">
-            <CheckBox Name="Remember" Content="Запомнить?" HorizontalAlignment="Center"/>
-            <Button Content="Зарегистрироваться" 
+    <StackPanel Height="640" Width="565" Background="#EDEDED" CornerRadius="67, 67, 67, 67" Spacing="12">
+        <Button Style="{StaticResource CloseButton}" Click="Close_Click"/>
+        
+        <TextBlock Text="Помощник диетолога" FontSize="48" HorizontalAlignment="Center"/>
+        <TextBlock Text="Регистрация" HorizontalAlignment="Center"/>
+        <TextBox x:Name="Login" PlaceholderText="Логин"/>
+        <PasswordBox x:Name="Password" PlaceholderText="Пароль"/>
+        <PasswordBox x:Name="RepeatPassword" PlaceholderText="Повторите пароль"/>
+        <Button Content="Зарегистрироваться" 
                     HorizontalAlignment="Center" 
                     Click="Registrate_Click"
-                    Margin="0,26,0,0" 
                     VerticalAlignment="Top"
                     Width="250"/>
-        </Grid>
-    </Grid>
+        <CheckBox Name="Remember" Content="Запомнить?" HorizontalAlignment="Center"/>
+    </StackPanel>
 </Page>

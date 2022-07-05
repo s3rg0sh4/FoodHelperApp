@@ -150,7 +150,6 @@
   <ItemGroup>
     <Content Include="Icons\Burned.png" />
     <Content Include="Icons\Carbs.png" />
-    <Content Include="Icons\Cross.png" />
     <Content Include="Icons\Fats.png" />
     <Content Include="Icons\Gained.png" />
     <Content Include="Icons\Proteins.png" />
