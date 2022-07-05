@@ -27,14 +27,15 @@ namespace FoodHelperApp
 	/// </summary>
 	public sealed partial class MainPage : Page
 	{
+		public Period Period { get; set; }
 		public User User { get; set; }
-		public Stats Stats => FoodHelperDB.GetUserStats(User.Id, Period.Day);
-		public int Burned => FoodHelperDB.GetUserStatsBurned(User.Id, Period.Day);
+		public Stats Stats => FoodHelperDB.GetUserStats(User.Id, Period);
+		public int Burned => FoodHelperDB.GetUserStatsBurned(User.Id, Period);
 		public ObservableCollection<string> DisplayMealList
 		{
 			get
 			{
-				try { return new ObservableCollection<string>(from s in FoodHelperDB.GetUserAte(User.Id, Period.Day) select $"{s.Count} * {s.Name}"); }
+				try { return new ObservableCollection<string>(from s in FoodHelperDB.GetUserAte(User.Id, Period) select $"{s.Count} * {s.Name}"); }
 				catch (ArgumentNullException) { return new ObservableCollection<string>(); }
 			}
 		}
@@ -44,13 +45,13 @@ namespace FoodHelperApp
 		{
 			this.InitializeComponent();
 			//ивент при нажатии любой из кнопок обновляет данные в блоках
+			LeftButton.Visibility = Visibility.Collapsed;
 
 			//SizeChanged += ResiseCheck;
 		}
 
 		protected override void OnNavigatedTo(NavigationEventArgs e)
 		{
-
 			base.OnNavigatedTo(e);
 			User = (User)e.Parameter;
 			if (User.Remember)
@@ -86,7 +87,52 @@ namespace FoodHelperApp
 		private void AddBurnedToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddBurned));
 
 		private void AddAteToday_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddMeal));
-		
+
+		private void PreviousPeriod_Click(object sender, RoutedEventArgs e)
+		{
+			Period--;
+			switch (Period)
+			{
+				case Period.Day:
+					BlockInfo.Text = "Представлены данные за сегодня";
+					LeftButton.Visibility = Visibility.Collapsed;
+					RightButton.Visibility = Visibility.Visible;
+					break;
+				case Period.Week:
+					BlockInfo.Text = "Представлены данные за неделю";
+					LeftButton.Visibility = Visibility.Visible;
+					RightButton.Visibility = Visibility.Visible;
+					break;
+				case Period.Month:
+					BlockInfo.Text = "Представлены данные за месяц";
+					LeftButton.Visibility = Visibility.Visible;
+					RightButton.Visibility = Visibility.Collapsed;
+					break;
+			}
+		}
+
+		private void NextPeriod_Click(object sender, RoutedEventArgs e)
+		{
+			Period++;
+			switch (Period)
+			{
+				case Period.Day:
+					BlockInfo.Text = "Представлены данные за сегодня";
+					LeftButton.Visibility = Visibility.Collapsed;
+					RightButton.Visibility = Visibility.Visible;
+					break;
+				case Period.Week:
+					BlockInfo.Text = "Представлены данные за неделю";
+					LeftButton.Visibility = Visibility.Visible;
+					RightButton.Visibility = Visibility.Visible;
+					break;
+				case Period.Month:
+					BlockInfo.Text = "Представлены данные за месяц";
+					LeftButton.Visibility = Visibility.Visible;
+					RightButton.Visibility = Visibility.Collapsed;
+					break;
+			}
+		}
 		//private void ResiseCheck(object sender, SizeChangedEventArgs e)
 		//{
 		//	if (e.NewSize.Height < 600)
