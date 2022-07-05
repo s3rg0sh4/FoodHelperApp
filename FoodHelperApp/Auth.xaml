@@ -11,7 +11,7 @@
     <Page.Resources>
 
         <Style TargetType="TextBox">
-            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#2D2D2D"/>
             <Setter Property="Background" Value="#7DC3FD"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Padding" Value="20,11,10,10"/>
@@ -21,7 +21,7 @@
             <Setter Property="BorderThickness" Value="0"/>
         </Style>
         <Style TargetType="PasswordBox">
-            <Setter Property="Foreground" Value="#2d2d2d"/>
+            <Setter Property="Foreground" Value="#2D2D2D"/>
             <Setter Property="Background" Value="#7DC3FD"/>
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Padding" Value="20,11,10,10"/>
