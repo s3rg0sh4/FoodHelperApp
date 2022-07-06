@@ -42,7 +42,7 @@
 
         <Grid>
             <Button Grid.Row="0" Content="Назад" HorizontalAlignment="Left" Click="Close_Click" Width="144"/>
-            <Button x:Name="CreateIngredient" Grid.Row="0" Content="Создать инредиент" HorizontalAlignment="Right" Margin="0" Width="240"/>
+            <Button Grid.Row="0" Content="Создать инредиент" HorizontalAlignment="Right" Margin="0" Width="240" Click="CreateIngredient_Click"/>
         </Grid>
         <StackPanel CornerRadius="30,30,30,30" Background="#EDEDED">
             <Button Content="Добавить рецепт" Width="300" Click="AddRecipe_Click" HorizontalAlignment="Center" Margin="12"/>

@@ -58,6 +58,6 @@ namespace FoodHelperApp
             children++;
         }
 
-        
-    }
+		private void CreateIngredient_Click(object sender, RoutedEventArgs e) => Frame.Navigate(typeof(AddIngredient));
+	}
 }

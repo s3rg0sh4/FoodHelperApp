@@ -8,8 +8,8 @@
     mc:Ignorable="d"
     Background="#FFFFFF" MinWidth="900" MinHeight="600">
 
-    <Frame>
-        <Frame.Resources>
+    <Page>
+        <Page.Resources>
             <Style x:Key="WhiteBlock" TargetType="Grid">
                 <Setter Property="Background" Value="#FFFFFF"/>
                 <Setter Property="CornerRadius" Value="30,30,30,30"/>
@@ -21,7 +21,7 @@
                 <Setter Property="CornerRadius" Value="30,30,30,30"/>
                 <Setter Property="Padding" Value="20"/>
             </Style>
-        </Frame.Resources>
+        </Page.Resources>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50"/>
@@ -153,5 +153,5 @@
                 </Grid>
             </Grid>
         </Grid>
-    </Frame>
+    </Page>
 </Page>
