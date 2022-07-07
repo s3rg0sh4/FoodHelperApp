@@ -28,7 +28,7 @@ namespace FoodHelperApp
 
         private void Registrate_Click(object sender, RoutedEventArgs e)
         {
-            if (!FoodHelperDB.CheckUser(Login.Text, Password.Password))
+            if (!FoodHelperDB.CheckUserLogin(Login.Text))
             {
                 FoodHelperDB.AddUser(Login.Text, Password.Password);
                 Frame.Navigate(typeof(MainPage), new User(Login.Text, Password.Password, Remember.IsChecked));
