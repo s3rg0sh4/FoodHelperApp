@@ -25,7 +25,7 @@ namespace FoodHelperApp
 
     public sealed partial class AddRecipe : Page
     {
-        public ObservableCollection<string> CmbContent { get { return new ObservableCollection<string>(FoodHelperDB.GetIngredientList()); } }
+        public ObservableCollection<string> CmbContent { get { return new ObservableCollection<string>(from i in FoodHelperDB.GetIngredientList() orderby i select i); } }
         private int children = 1;
         public AddRecipe()
         {
@@ -36,10 +36,9 @@ namespace FoodHelperApp
 		private void AddRecipe_Click(object sender, RoutedEventArgs e)
 		{
             
-            FoodHelperDB.AddRecipe(RecipeNameField.Text, 
-                new List<(string Name, int Weight)>(from a in CmbStack.Children join b in TbStack.Children 
-                                                    on CmbStack.Children.IndexOf(a) equals TbStack.Children.IndexOf(b) 
-                                                    select (((ComboBox)a).SelectedItem.ToString(), int.Parse(((TextBox)b).Text.ToString()))));
+            FoodHelperDB.AddRecipe(RecipeNameField.Text, new List<(string Name, int Weight)>(from a in CmbStack.Children join b in TbStack.Children
+                                                                                             on CmbStack.Children.IndexOf(a) equals TbStack.Children.IndexOf(b)
+                                                                                             select (((ComboBox)a).SelectedItem.ToString(), int.Parse(((TextBox)b).Text.ToString()))));
 
             children = 1;
             Frame.GoBack();

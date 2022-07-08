@@ -19,9 +19,7 @@ namespace FoodHelperLibrary
 
         public async static void InitializeDatabase()
         {
-            //C:\Users\s3rg0sh4\Desktop\Курсач\FoodHelperApp\FoodHelperApp\bin\x86\Debug\FoodHelper.db
             await ApplicationData.Current.LocalFolder.CreateFileAsync("FoodHelper.db", CreationCollisionOption.OpenIfExists);
-            //string dbpath = Path.Combine(ApplicationData.Current.LocalFolder.Path, "FoodHelper.db");
             using (SqliteConnection connection = new SqliteConnection($"Filename={dbpath}"))
             {
                 connection.Open();

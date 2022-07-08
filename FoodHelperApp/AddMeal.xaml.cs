@@ -24,7 +24,10 @@ namespace FoodHelperApp
     /// </summary>
     public sealed partial class AddMeal : Page
     {
-        public ObservableCollection<string> CmbContent { get { return new ObservableCollection<string>(FoodHelperDB.GetRecipeAll()); } }
+        public ObservableCollection<string> CmbContent { get {
+                try { return new ObservableCollection<string>(FoodHelperDB.GetRecipeAll()); }
+                catch { return new ObservableCollection<string>(); }
+            } }
 
         public AddMeal()
         {
